@@ -1,0 +1,43 @@
+﻿using AppleShop.Application.Requests.AIManagement.AIPrompt;
+using AppleShop.Application.Validators.AIManagement.AIPrompt;
+using AppleShop.Domain.Abstractions.IRepositories.AIManagement;
+using AppleShop.Share.Exceptions;
+using AppleShop.Share.Shared;
+using MediatR;
+
+namespace AppleShop.Application.Handlers.AIManagement.AIPrompt
+{
+    public class DeletePromptHandler : IRequestHandler<DeletePromptRequest, Result<object>>
+    {
+        private readonly IAIPromptRepository aIPromptRepository;
+
+        public DeletePromptHandler(IAIPromptRepository aIPromptRepository)
+        {
+            this.aIPromptRepository = aIPromptRepository;
+        }
+
+        public async Task<Result<object>> Handle(DeletePromptRequest request, CancellationToken cancellationToken)
+        {
+            var validator = new DeletePromptValidator();
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+            if (!validationResult.IsValid) AppleException.ThrowValidation(validationResult);
+
+            var prompt = await aIPromptRepository.FindByIdAsync(request.Id, true);
+            if (prompt is null) AppleException.ThrowNotFound(typeof(Domain.Entities.AIManagement.AIPrompt));
+
+            using var transaction = await aIPromptRepository.BeginTransactionAsync(cancellationToken);
+            try
+            {
+                aIPromptRepository.Delete(prompt);
+                await aIPromptRepository.SaveChangesAsync(cancellationToken);
+                transaction.Commit();
+                return Result<object>.Ok();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
+        }
+    }
+}

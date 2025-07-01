@@ -1,0 +1,3 @@
+<div class="notification" *ngIf="notificationService.notification$ | async as notification" [ngClass]="notification.type" [@slideInOut]="notification.show">
+  {{ notification.message }}
+</div> 

@@ -1,0 +1,170 @@
+<app-page-banner 
+  [breadcrumbs]="[
+    {label: 'Lịch sử đơn hàng', link: '/order-history'}
+  ]">
+</app-page-banner>
+
+<div class="order-history-container">
+
+  <div class="order-tabs">
+    <div class="tab-list">
+      <div 
+        *ngFor="let tab of tabs" 
+        class="tab-item">
+        <button 
+          class="tab-button" 
+          [class.active]="activeTab === tab.id"
+          (click)="onTabChange(tab.id)">
+          {{tab.name}}
+        </button>
+        <span class="badge" *ngIf="shouldShowBadge(tab) && tab.count && tab.count > 0">
+          {{tab.count}}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-list" *ngIf="!loading && !error">
+    <!-- Regular orders -->
+    <ng-container *ngIf="activeTab !== 6">
+      <div class="order-item" *ngFor="let order of orders" (click)="openOrderDetail(order.oiId)">
+        <div class="order-header">
+          <div class="order-info">
+            <span class="order-id">#{{ order.oiId }}</span>
+            <span class="status" [ngClass]="getStatusClass(order.status)">
+              {{ getStatusText(order.status) }}
+            </span>
+          </div>
+          <div class="order-actions">
+            <div class="payment-action" *ngIf="order.paymentUrl">
+              <ng-container *ngIf="order.paymentUrl === 'Payment has expired.'">
+                <span class="payment-expired">Đã quá hạn thanh toán</span>
+              </ng-container>
+              <ng-container *ngIf="order.paymentUrl !== 'Payment has expired.'">
+                <button class="pay-now-btn" (click)="openPaymentUrl(order.paymentUrl); $event.stopPropagation()">
+                  <i class="fa fa-credit-card"></i>
+                  Thanh toán ngay
+                </button>
+              </ng-container>
+            </div>
+            <button *ngIf="canRequestCancel(order.status)" 
+                    class="cancel-order-btn" 
+                    (click)="requestCancel(order.oiId); $event.stopPropagation()">
+              <i class="fa fa-times"></i>
+              Yêu cầu hủy đơn
+            </button>
+            <button *ngIf="order.status.toLowerCase() === 'shipping'"
+                    class="received-btn"
+                    (click)="confirmReceived(order.oiId); $event.stopPropagation()">
+              <i class="fa fa-check"></i>
+              Đã nhận được hàng
+            </button>
+            <ng-container *ngIf="order.status.toLowerCase() === 'delivered'">
+              <button class="refund-btn" (click)="openRefundModal(order); $event.stopPropagation()">
+                <i class="fa fa-undo"></i>
+                Yêu cầu trả hàng/Hoàn tiền
+              </button>
+              <button 
+                class="review-btn" 
+                [class.reviewed]="order.isReview"
+                (click)="!order.isReview && openReviewModal(order); $event.stopPropagation()"
+                [disabled]="order.isReview">
+                <i class="fa" [class.fa-star]="!order.isReview" [class.fa-check]="order.isReview"></i>
+                {{order.isReview ? 'Đã đánh giá' : 'Đánh giá'}}
+              </button>
+              <button class="rebuy-btn" (click)="rebuyItem(order); $event.stopPropagation()">
+                <i class="fa fa-shopping-cart"></i>
+                Mua lại
+              </button>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="order-content">
+          <div class="product-image">
+            <img [src]="order.image" [alt]="order.name">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ order.name }}</h3>
+            <p class="product-variant">{{ order.productAttribute }}</p>
+            <div class="quantity">Số lượng: {{ order.quantity }}</div>
+          </div>
+          <div class="price-info">
+            <div class="price-row">
+              <span class="label">Đơn giá:</span>
+              <span class="original-price" [class.has-discount]="order.originalPrice !== order.finalPrice">
+                {{ formatPrice(order.originalPrice) }}
+              </span>
+            </div>
+            <div class="price-row" *ngIf="order.originalPrice !== order.finalPrice">
+              <span class="label">Giá sau giảm:</span>
+              <span class="final-price">{{ formatPrice(order.finalPrice) }}</span>
+            </div>
+            <div class="price-row total">
+              <span class="label">Thành tiền:</span>
+              <span class="total-price">{{ formatPrice(order.totalPrice) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Nút xem thêm cho đơn hàng thường -->
+      <div class="text-center mt-4" *ngIf="orders.length > 0 && hasMoreOrders">
+        <button class="load-more-btn" (click)="loadMoreOrders()" [disabled]="loading">
+          <span *ngIf="!loading">Xem thêm ({{ getRemainingOrdersCount() }} đơn hàng)</span>
+          <span *ngIf="loading">Đang tải...</span>
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Return orders -->
+    <ng-container *ngIf="activeTab === 6">
+      <div class="order-item" *ngFor="let return of returnOrders" (click)="openReturnDetail(return.returnId)">
+        <div class="order-header">
+          <div class="order-info">
+            <span class="order-id">#{{ return.returnId }}</span>
+            <span class="status" [ngClass]="getReturnStatusClass(return.status)">
+              {{ getReturnStatusText(return.status) }}
+            </span>
+          </div>
+        </div>
+
+        <div class="order-content">
+          <div class="product-image">
+            <img [src]="return.imageUrl" [alt]="return.name">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ return.name }}</h3>
+            <p class="product-variant">{{ return.productAttribute }}</p>
+            <div class="quantity">Số lượng trả: {{ return.quantity }}</div>
+          </div>
+          <div class="price-info">
+            <div class="price-row total">
+              <span class="label">Số tiền hoàn trả:</span>
+              <span class="total-price">{{ return.refundAmount | currency:'VND':'symbol':'1.0-0' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Nút xem thêm cho đơn trả hàng -->
+      <div class="text-center mt-4" *ngIf="returnOrders.length > 0 && hasMoreReturns">
+        <button class="load-more-btn" (click)="loadMoreReturns()" [disabled]="loading">
+          <span *ngIf="!loading">Xem thêm ({{ getRemainingReturnsCount() }} đơn trả hàng)</span>
+          <span *ngIf="loading">Đang tải...</span>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="empty-state" *ngIf="!loading && !error && ((activeTab === 6 && returnOrders.length === 0) || (activeTab !== 6 && orders.length === 0))">
+    <i class="fas fa-shopping-bag"></i>
+    <h2>{{ activeTab === 6 ? 'Chưa có đơn trả hàng' : 'Chưa có đơn hàng' }}</h2>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    Đang tải dữ liệu...
+  </div>
+
+  <div class="error" *ngIf="error">
+    Không thể tải dữ liệu, vui lòng thử lại sau.
+  </div>
+</div> 

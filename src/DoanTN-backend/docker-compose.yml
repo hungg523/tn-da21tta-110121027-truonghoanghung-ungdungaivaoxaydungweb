@@ -1,0 +1,6 @@
+services:
+  appleshop.api:
+    image: hung52304/services:api-backend
+    build:
+      context: .
+      dockerfile: src/AppleShop.API/Dockerfile

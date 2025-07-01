@@ -1,0 +1,42 @@
+# Loại bỏ các file/thư mục cache của Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Loại bỏ các file tài liệu và không cần thiết
+README.md
+*.md
+
+# Loại bỏ các file tạm và log
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Loại bỏ các file phát triển cục bộ
+.pytest_cache/
+.venv/
+venv/
+.env.local
+*.egg-info/
+
+# Loại bỏ các thư mục không cần thiết cho runtime
+.git/
+.gitignore
+.github/
+tests/
+__tests__/
+docs/
+*.md
+
+# Loại bỏ các file build hoặc artifact không cần thiết
+dist/
+build/
+*.zip
+*.tar.gz
+
+# Loại bỏ các file nhạy cảm (nếu không cần trong container)
+# *.key
+# *.pem
+# *.crt

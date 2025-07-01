@@ -1,0 +1,257 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --primary: #2c3e50;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --soft-bg: #f4f6f8;
+  --hover-bg: #e9ecef;
+  --text-primary: #2c3e50;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Card styles */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px var(--shadow-color);
+  border-color: var(--border-color);
+}
+
+/* Container backgrounds */
+.container-fluid,
+.container {
+  background: var(--bg-color);
+}
+
+/* Form controls */
+.form-control,
+.input-group-text {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 2px var(--shadow-color);
+}
+
+/* Tables */
+.table {
+  background-color: var(--card-bg);
+}
+
+.table tr:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Modal backgrounds */
+.modal-content {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+/* List groups */
+.list-group-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.list-group-item:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Sidebar if exists */
+.sidebar {
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--border-color);
+}
+
+/* Footer */
+footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Links */
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--text-secondary);
+  border-color: var(--text-secondary);
+  color: white;
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-primary);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Input focus states */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--text-primary) !important;
+  box-shadow: 0 0 0 2px var(--shadow-color) !important;
+}
+
+/* Badge styles */
+.badge {
+  padding: 0.4em 0.8em;
+  font-weight: 500;
+}
+
+.badge-primary {
+  background-color: var(--primary);
+}
+
+/* Alert styles */
+.alert {
+  border: none;
+  border-radius: 8px;
+}
+
+.alert-primary {
+  background-color: var(--soft-bg);
+  color: var(--text-primary);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #34495e;
+    --bg-color: #1a1a1a;
+    --card-bg: #242424;
+    --soft-bg: #2a2a2a;
+    --hover-bg: #2f2f2f;
+    --text-primary: #ecf0f1;
+    --text-secondary: #95a5a6;
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+  }
+} */
+
+/* Modal Z-index fixes */
+.modal-backdrop {
+  z-index: 1040 !important;
+}
+
+.modal {
+  z-index: 1050 !important;
+}
+
+.modal-dialog {
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+/* Thêm animation cho modal */
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+}
+
+/* Custom styling cho modal */
+.modal-content {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: none;
+  padding: 20px 24px;
+}
+
+.modal-body {
+  padding: 0 24px 24px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.btn-close {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}

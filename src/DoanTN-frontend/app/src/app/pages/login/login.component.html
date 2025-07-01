@@ -1,0 +1,77 @@
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h2>Chào mừng trở lại!</h2>
+            <p>Vui lòng đăng nhập để tiếp tục</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-with-icon">
+                    <i class="bx bx-envelope"></i>
+                    <input type="email" id="email" formControlName="email" placeholder="Nhập email của bạn">
+                </div>
+                <div class="error-message" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+                    {{ getErrorMessage('email', loginForm) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <div class="input-with-icon">
+                    <i class="bx bx-lock-alt"></i>
+                    <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password" placeholder="Nhập mật khẩu">
+                    <i class="bx toggle-password" 
+                       [class.bx-show]="!showPassword" 
+                       [class.bx-hide]="showPassword" 
+                       (click)="togglePassword()">
+                    </i>
+                </div>
+                <div class="error-message" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+                    {{ getErrorMessage('password', loginForm) }}
+                </div>
+            </div>
+
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox">
+                    <span>Ghi nhớ đăng nhập</span>
+                </label>
+                <a routerLink="/forgot-password" class="forgot-password">Quên mật khẩu?</a>
+            </div>
+
+            <button type="submit" class="login-button" [disabled]="isLoading || !loginForm.valid">
+                <span *ngIf="!isLoading">Đăng nhập</span>
+                <div class="spinner" *ngIf="isLoading">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                </div>
+            </button>
+
+            <div class="message-box" *ngIf="error" [class.error]="true">
+                {{ error }}
+            </div>
+
+            <div class="divider">
+                <span>hoặc đăng nhập với</span>
+            </div>
+
+            <div class="social-login">
+                <button type="button" class="social-button google" (click)="loginWithGoogle()" [disabled]="isLoading">
+                    <img src="assets/images/google.png" alt="Google" style="width: 16px; height: 16px;">
+                    <span>Google</span>
+                </button>
+                <button type="button" class="social-button facebook" (click)="loginWithFacebook()" [disabled]="isLoading">
+                    <i class="bx bxl-facebook"></i>
+                    <span>Facebook</span>
+                </button>
+            </div>
+
+            <div class="register-link">
+                Chưa có tài khoản? <a routerLink="/register">Đăng ký ngay</a>
+            </div>
+        </form>
+    </div>
+</div>

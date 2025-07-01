@@ -1,0 +1,27 @@
+﻿using AppleShop.Application.Requests.DTOs.UserManagement.User;
+
+namespace AppleShop.Application.Requests.DTOs.ReturnManagement.Return
+{
+    public class ReturnDTO
+    {
+        public int? ReturnId { get; set; }
+        public string? OrderCode { get; set; }
+        public string? Email { get; set; }
+        public string? Reason { get; set; }
+        public string? Status { get; set; }
+        public int? VariantId { get; set; }
+        public string? Name { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? ReturnUrl { get; set; }
+        public int? Quantity { get; set; }
+        public decimal? RefundAmount { get; set; }
+        public UserAddressDTO? UserAddresses { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? ProcessedAt { get; set; }
+        public string? AccountName { get; set; }
+        public string? AccountNumber { get; set; }
+        public string? BankName { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? ReturnType { get; set; }
+    }
+}

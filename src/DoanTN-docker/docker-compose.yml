@@ -1,0 +1,81 @@
+name: hung-apple
+x-common-configs: &common-configs
+  #restart: unless-stopped
+  #pull_policy: always
+  networks:
+    - external_network
+    - app-network
+
+networks:
+  app-network:
+    driver: bridge
+  external_network:
+    external: true
+
+services:
+  app:
+    image: hung52304/services-public:frontend
+    container_name: frontend
+    ports:
+      - "4200:80"
+    <<: *common-configs
+
+  admin:
+    image: hung52304/services-public:frontend-admin
+    container_name: frontend-admin
+    ports:
+      - "4201:80"
+    <<: *common-configs
+
+  api-backend:
+    image: hung52304/services-public:api-backend
+    container_name: api-backend
+    ports:
+      - "7001:8081"
+    env_file:
+      - net.env
+    volumes:
+      - ./settings/appsettings.json:/app/appsettings.json
+      - ./certs:/https
+      - ./assets:/app/wwwroot/assets
+    <<: *common-configs
+
+  ai-recommendation:
+    image: hung52304/services-public:ai-recommendation
+    container_name: ai-recommendation
+    # restart: unless-stopped
+    ports:
+      - "8000:8000"
+    <<: *common-configs
+
+  redis:
+    image: redis:7.2
+    container_name: redis
+    #restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - ./redis-data:/data
+    networks:
+      - app-network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    #restart: unless-stopped
+    container_name: sqlserver
+    ports:
+      - "1435:1433"
+    environment:
+      SA_PASSWORD: "YourPassword123!"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - ./sql-init:/var/opt/mssql/scripts
+      - ./data/sql-data:/var/opt/mssql/data
+      - ./data/sql-backup:/var/opt/mssql/backup
+    entrypoint:
+      - /bin/bash
+      - -c
+      - |
+        /opt/mssql/bin/sqlservr
+    networks:
+      - app-network

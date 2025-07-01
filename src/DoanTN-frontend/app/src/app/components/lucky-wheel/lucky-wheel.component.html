@@ -1,0 +1,74 @@
+<!-- Nút mở vòng quay chỉ là icon và số lượt quay -->
+<button class="lucky-wheel-button" *ngIf="isLoggedIn" (click)="openWheel()">
+  <i class="fas fa-gift"></i>
+  <span class="spin-count" *ngIf="spinCount > 0">{{ spinCount }}</span>
+</button>
+
+<!-- Popup vòng quay -->
+<div class="lucky-wheel-popup" *ngIf="isLoggedIn && showWheel">
+  <div class="popup-overlay" (click)="closeWheel()"></div>
+  <div class="popup-content">
+    <button class="close-popup" (click)="closeWheel()">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="wheel-title">VÒNG QUAY MAY MẮN</div>
+    <div class="wheel-desc">Quay để nhận voucher hấp dẫn!</div>
+
+    <div class="svg-wheel-container">
+      <!-- Mũi tên xác định vị trí -->
+      <div class="wheel-pointer-svg">
+        <svg width="40" height="40">
+          <polygon points="20,40 35,10 5,10" fill="#fff" stroke="#2196f3" stroke-width="2"/>
+          <polygon points="20,35 30,12 10,12" fill="#ff9800"/>
+        </svg>
+      </div>
+      <!-- Chấm tròn trang trí quanh vòng quay -->
+      <svg class="wheel-dots" [attr.width]="wheelSize" [attr.height]="wheelSize" [attr.viewBox]="'0 0 ' + wheelSize + ' ' + wheelSize">
+        <circle *ngFor="let dot of dots; let i = index"
+                [attr.cx]="getDotX(i)"
+                [attr.cy]="getDotY(i)"
+                r="6" fill="#fff" stroke="#ffd600" stroke-width="2"/>
+      </svg>
+      <svg [attr.width]="wheelSize" [attr.height]="wheelSize" [attr.viewBox]="'0 0 ' + wheelSize + ' ' + wheelSize" class="svg-wheel" [style.transform]="'rotate(' + wheelRotation + 'deg)'">
+        <g *ngFor="let coupon of coupons; let i = index">
+          <path [attr.d]="getSegmentPath(i)" [attr.fill]="getSegmentColor(i)" />
+          <g [attr.transform]="getLabelTransform(i)">
+            <image *ngIf="getCouponIcon(coupon.couponType)" [attr.xlink:href]="getCouponIcon(coupon.couponType)" x="-18" y="-38" width="36" height="36" />
+            <text x="0" y="18" text-anchor="middle" alignment-baseline="middle" class="svg-label">{{ getCouponLabel(coupon) }}</text>
+          </g>
+        </g>
+      </svg>
+      <button class="center-spin-btn" [disabled]="!canSpin || isSpinning" (click)="spin()">
+        <span *ngIf="!isSpinning">QUAY</span>
+        <span *ngIf="isSpinning">Đang quay...</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal kết quả -->
+  <div class="result-modal" *ngIf="showResult">
+    <div class="result-content">
+      <h3>🎉 Chúc mừng! 🎉</h3>
+      <div class="result-message" *ngIf="selectedCoupon && selectedCoupon.id">
+        <p>Bạn đã nhận được:</p>
+        <div class="coupon-info">
+          <h4>{{ selectedCoupon?.code }}</h4>
+          <p>{{ selectedCoupon?.description }}</p>
+          <p *ngIf="selectedCoupon && selectedCoupon.discountPercentage > 0">
+            Giảm {{ selectedCoupon?.discountPercentage }}%
+          </p>
+          <p *ngIf="selectedCoupon && selectedCoupon.discountAmount > 0">
+            Giảm {{ selectedCoupon?.discountAmount | number:'1.0-0' }}₫
+          </p>
+          <p *ngIf="selectedCoupon && selectedCoupon.minOrderValue > 0">
+            Áp dụng cho đơn hàng từ {{ selectedCoupon?.minOrderValue | number:'1.0-0' }}₫
+          </p>
+        </div>
+      </div>
+      <div class="result-message" *ngIf="!selectedCoupon?.id">
+        <p>Chúc bạn may mắn lần sau!</p>
+      </div>
+      <button class="close-button" (click)="closeResult()">Đóng</button>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,532 @@
+<app-page-banner 
+  [title]="product?.name || 'Chi tiết sản phẩm'"
+  [breadcrumbs]="[
+    {label: 'Sản phẩm', link: '/shop'},
+    {label: product?.name || 'Chi tiết sản phẩm'}
+  ]">
+</app-page-banner>
+
+<section class="product-detail-main pt-100" *ngIf="product">
+	<div class="container">
+		<div class="row">
+			<!-- Hình ảnh sản phẩm -->
+			<div class="col-lg-5 col-md-6 col-12">
+				<div class="product-gallery">
+					<div class="main-image" [class.loading]="loading">
+						<ng-container *ngIf="product?.images && product.images.length > 0">
+							<ng-container *ngIf="isVideo(product.images[currentImageIndex].url); else imageTemplate">
+								<video controls width="100%">
+									<source [src]="getImageUrl(product.images[currentImageIndex].url)" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+							</ng-container>
+							<ng-template #imageTemplate>
+								<img [src]="getImageUrl(product.images[currentImageIndex].url)" [alt]="product.name"
+									class="img-fluid">
+							</ng-template>
+						</ng-container>
+					</div>
+					<div class="thumbnail-list" *ngIf="product?.images && product.images.length > 1">
+						<div class="thumbnail-container">
+							<div class="row justify-content-center">
+								<div class="col-auto" *ngFor="let image of product.images; let i = index">
+									<div class="thumbnail" [class.active]="i === currentImageIndex"
+										(click)="changeImage(i)">
+										<ng-container *ngIf="isVideo(image.url); else thumbImageTemplate">
+											<video width="100%">
+												<source [src]="getImageUrl(image.url)" type="video/mp4">
+											</video>
+											<div class="video-overlay">
+												<i class="fa fa-play"></i>
+											</div>
+										</ng-container>
+										<ng-template #thumbImageTemplate>
+											<img [src]="getImageUrl(image.url)" [alt]="product.name" class="img-fluid">
+										</ng-template>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Thông tin sản phẩm -->
+			<div class="col-lg-7 col-md-6 col-12">
+				<div class="product-detail-in">
+					<!-- Product Info Section -->
+					<div class="product-info-section">
+						<h1 class="product-title">{{ product.name }}</h1>
+
+						<div class="price-section">
+							<span class="current-price">{{ product.discountPrice | currency:'':'':'1.0-0' }}₫</span>
+							<span class="original-price" *ngIf="product.price !== product.discountPrice">
+								{{ product.price | currency:'':'':'1.0-0' }}₫
+							</span>
+							<span class="discount-badge" *ngIf="product.price !== product.discountPrice">
+								-{{ calculateDiscountPercentage(product.price || 0, product.discountPrice || 0) }}%
+							</span>
+						</div>
+
+						<div class="product-info-row">
+							<div class="stock-status"
+								[ngClass]="{'in-stock': product.stock && product.stock > 0, 'out-of-stock': !product.stock}">
+								<i class="fa"
+									[ngClass]="{'fa-check-circle': product.stock && product.stock > 0, 'fa-times-circle': !product.stock}"></i>
+								<span>{{ product.stock && product.stock > 0 ? 'Còn hàng' : 'Hết hàng' }}</span>
+							</div>
+
+							<div class="stat-item">
+								<i class="fa fa-shopping-bag"></i>
+								<div class="stat-info">
+									<span class="stat-label">Đã bán</span>
+									<span class="stat-value">{{ product.soldQuantity }}</span>
+								</div>
+							</div>
+							<div class="stat-item">
+								<i class="fa fa-cubes"></i>
+								<div class="stat-info">
+									<span class="stat-label">Còn lại</span>
+									<span class="stat-value">{{ product.actualStock }}</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Variants Section -->
+						<div class="variants-section" *ngIf="product">
+							<!-- Storage Options -->
+							<div class="variant-group"
+								*ngIf="getAttributeValues('Dung lượng', product.productsAttributes).length > 0">
+								<h3 class="variant-title">Chọn dung lượng</h3>
+								<div class="variant-options storage-options">
+									<button class="variant-option storage"
+										*ngFor="let storage of getAttributeValues('Dung lượng', product.productsAttributes)"
+										[class.selected]="isAttributeSelected('Dung lượng', storage.attributeValue)"
+										(click)="selectVariant(storage.variantId, 'Dung lượng', storage.attributeValue)">
+										<div class="storage-info">
+											<span class="storage-size">{{ storage.attributeValue }}</span>
+											<span class="storage-price">{{ storage.price |
+												currency:'':'':'1.0-0' }}₫</span>
+										</div>
+									</button>
+								</div>
+							</div>
+
+							<!-- Color Options -->
+							<div class="variant-group" *ngIf="colorOptions.length > 0">
+								<h3 class="variant-title">Chọn màu sắc</h3>
+								<div class="variant-options color-options">
+									<button class="variant-option color" *ngFor="let color of colorOptions"
+										[class.selected]="isAttributeSelected('Màu sắc', color.attributeValue)"
+										(click)="selectVariant(color.variantId, 'Màu sắc', color.attributeValue)">
+										<div class="color-info">
+											<div class="color-preview">
+												<img [src]="color.imageUrl" [alt]="color.attributeValue">
+											</div>
+											<div class="color-details">
+												<span class="color-name">{{ color.attributeValue }}</span>
+												<span class="color-price">{{ color.price |
+													currency:'':'':'1.0-0' }}₫</span>
+											</div>
+										</div>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Quantity Section -->
+						<div class="quantity-section">
+							<h3 class="variant-title">Số lượng</h3>
+							<div class="quantity-input">
+								<button class="quantity-btn" (click)="decreaseQuantity()">-</button>
+								<input type="number" class="quantity-value" [(ngModel)]="quantity" min="1">
+								<button class="quantity-btn" (click)="increaseQuantity()">+</button>
+							</div>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="action-buttons">
+							<button class="buy-now" (click)="buyNow()" [disabled]="!product.stock">
+								<i class="fa fa-shopping-bag"></i>
+								Mua ngay
+							</button>
+							<button class="add-to-cart" (click)="addToCart()" [disabled]="!product.stock"
+								[class.success]="isAddedToCart">
+								<i class="fa" [class.fa-shopping-cart]="!isAddedToCart"
+									[class.fa-check]="isAddedToCart"></i>
+								{{ isAddedToCart ? 'Đã thêm vào giỏ' : 'Thêm vào giỏ hàng' }}
+							</button>
+						</div>
+
+						<!-- Product Meta -->
+						<div class="product-meta">
+							<div class="meta-item">
+								<i class="fa fa-share-alt"></i>
+								<span>Chia sẻ:</span>
+								<div class="share-buttons">
+									<button class="share-btn">
+										<i class="fa fa-facebook-f"></i>
+									</button>
+									<button class="share-btn">
+										<i class="fa fa-twitter"></i>
+									</button>
+									<button class="share-btn">
+										<i class="fa fa-pinterest-p"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Đánh giá -->
+					<div class="rating mt-3" *ngIf="product.totalReviews">
+						<div class="stars">
+							<i class="fa fa-star" *ngFor="let i of [1,2,3,4,5]"
+								[class.filled]="i <= product.averageRating"
+								[class.half]="i - 0.5 <= product.averageRating && i > product.averageRating">
+							</i>
+						</div>
+						<span class="review-count">({{ product.totalReviews }} đánh giá)</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Similar Products Section -->
+<section class="similar-products py-5" *ngIf="similarProducts.length > 0">
+	<div class="container">
+		<h2 class="section-title mb-4">Sản phẩm tương tự</h2>
+		<div class="product-grid">
+			<div class="product-item" *ngFor="let product of similarProducts" (click)="navigateToDetail(product.variantId)">
+				<div class="product-image">
+					<img [src]="getImageUrl(product.images[0]?.url)" [alt]="product.name" (error)="handleImageError($event)">
+					<button class="wishlist-btn" (click)="addToWishlist($event, product)" [class.active]="product.isInWishlist">
+						<i class="fa fa-heart"></i>
+					</button>
+					<div class="discount-badge" *ngIf="product.discountPrice && product.discountPrice < product.price">
+						-{{ calculateDiscountPercentage(product.price, product.discountPrice) }}%
+					</div>
+				</div>
+				<div class="product-info">
+					<h3 class="product-name">{{ product.name }}</h3>
+					<div class="product-price">
+						<ng-container *ngIf="product.discountPrice && product.discountPrice < product.price">
+							<span class="current-price">{{ product.discountPrice | number:'1.0-0' }}đ</span>
+							<span class="discount-price">{{ product.price | number:'1.0-0' }}đ</span>
+						</ng-container>
+						<ng-container *ngIf="!product.discountPrice || product.discountPrice >= product.price">
+							<span class="current-price">{{ product.price | number:'1.0-0' }}đ</span>
+						</ng-container>
+					</div>
+					<div class="product-meta">
+						<span class="sold-quantity">Đã bán: {{ product.soldQuantity }}</span>
+						<div class="rating" *ngIf="product.totalReviews > 0">
+							<div class="stars">
+								<i class="fa fa-star" *ngFor="let i of [1,2,3,4,5]"
+									[class.filled]="i <= product.averageRating"
+									[class.half]="i - 0.5 <= product.averageRating && i > product.averageRating">
+								</i>
+							</div>
+							<span class="review-count">({{ product.totalReviews }})</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="product-detail-tab pt-100" id="product-review">
+	<div class="container">
+		<div class="product-review">
+			<!-- Tab Navigation -->
+			<div class="product-tabs">
+				<ul id="tabs" class="review-tab nav nav-tabs" role="tablist">
+					<li role="presentation" class="tab-link">
+						<a href="#description" role="tab" data-toggle="tab" class="active">
+							<i class="fa fa-file-text"></i>
+							Mô tả sản phẩm
+						</a>
+					</li>
+					<li role="presentation" class="tab-link">
+						<a href="#specifications" role="tab" data-toggle="tab">
+							<i class="fa fa-list"></i>
+							Thông số kỹ thuật
+						</a>
+					</li>
+					<li role="presentation" class="tab-link">
+						<a href="#review" role="tab" data-toggle="tab">
+							<i class="fa fa-star"></i>
+							Đánh giá
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Tab Content -->
+			<div class="product-review-des tab-content">
+				<!-- Tab Mô tả -->
+				<div role="tabpanel" class="product-review-in product-review-des tab-pane fade active show"
+					id="description">
+					<div class="product-description">
+						<div class="description-header">
+							<i class="fa fa-info-circle"></i>
+							<h3>Chi tiết sản phẩm</h3>
+						</div>
+						<div class="description-content">
+							<ng-container *ngIf="product?.description; else noDescription">
+								<div class="description-text" [innerHTML]="formatDescription(product!.description)">
+								</div>
+							</ng-container>
+							<ng-template #noDescription>
+								<div class="no-description">
+									<i class="fa fa-file-text-o"></i>
+									<p>Chưa có mô tả cho sản phẩm này</p>
+								</div>
+							</ng-template>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tab Thông số kỹ thuật -->
+				<div role="tabpanel" class="product-review-in product-review-specs tab-pane fade" id="specifications">
+					<div class="specifications-table">
+						<table class="table">
+							<tbody>
+								<ng-container *ngIf="product?.details?.length">
+									<tr *ngFor="let detail of product?.details">
+										<td class="detail-key">{{ detail?.key }}</td>
+										<td class="detail-value">{{ detail?.value }}</td>
+									</tr>
+								</ng-container>
+								<tr *ngIf="!product?.details?.length">
+									<td colspan="2" class="text-center">Không có thông số kỹ thuật</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- Tab Đánh giá -->
+				<div role="tabpanel" class="product-review-in product-review-com tab-pane fade" id="review">
+					<!-- Review Summary -->
+					<div class="review-summary mb-4" *ngIf="reviewSummary">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="average-rating text-center">
+									<h2>{{ reviewSummary.averageRating | number:'1.1-1' }}</h2>
+									<div class="stars">
+										<i class="fa fa-star" *ngFor="let i of [1,2,3,4,5]"
+											[class.filled]="i <= reviewSummary.averageRating"
+											[class.half]="i - 0.5 <= reviewSummary.averageRating && i > reviewSummary.averageRating">
+										</i>
+									</div>
+									<p class="total-reviews">{{ reviewSummary.totalReviews }} đánh giá</p>
+								</div>
+							</div>
+							<div class="col-md-8">
+								<div class="rating-breakdown">
+									<div class="rating-bar" *ngFor="let star of [5,4,3,2,1]">
+										<div class="rating-label">
+											{{ star }} <i class="fa fa-star"></i>
+										</div>
+										<div class="progress">
+											<div class="progress-bar" [style.width.%]="getPercentage(star === 5 ? reviewSummary.ratingsBreakdown.fiveStar : 
+																	   star === 4 ? reviewSummary.ratingsBreakdown.fourStar :
+																	   star === 3 ? reviewSummary.ratingsBreakdown.threeStar :
+																	   star === 2 ? reviewSummary.ratingsBreakdown.twoStar :
+																	   reviewSummary.ratingsBreakdown.oneStar)">
+											</div>
+										</div>
+										<div class="rating-count">
+											{{ star === 5 ? reviewSummary.ratingsBreakdown.fiveStar :
+											star === 4 ? reviewSummary.ratingsBreakdown.fourStar :
+											star === 3 ? reviewSummary.ratingsBreakdown.threeStar :
+											star === 2 ? reviewSummary.ratingsBreakdown.twoStar :
+											reviewSummary.ratingsBreakdown.oneStar }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Phần lọc đánh giá -->
+					<div class="review-filters mb-4">
+						<div class="filters-container">
+							<div class="star-filters">
+								<span class="filter-label">Lọc theo:</span>
+								<div class="star-buttons">
+									<button *ngFor="let star of [5,4,3,2,1]" class="btn star-btn"
+										[class.active]="selectedStar === star" (click)="filterByStar(star)">
+										{{ star }} <i class="fa fa-star"></i>
+									</button>
+									<button class="btn star-btn" [class.active]="isFilterByImage"
+										(click)="toggleImageFilter()">
+										<i class="fa fa-image"></i> Ảnh/Video
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Reviews List -->
+					<div class="reviews-list" *ngIf="reviews.length > 0">
+						<div class="review-item" *ngFor="let review of reviews">
+							<!-- Thông tin người dùng -->
+							<div class="review-header">
+								<div class="user-info">
+									<img [src]="review.user.avatar" [alt]="review.user.username" class="user-avatar">
+									<div class="user-details">
+										<h5 class="username">{{ review.user.username }}</h5>
+										<div class="rating">
+											<i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]"
+												[class.filled]="star <= review.rating">
+											</i>
+										</div>
+									</div>
+								</div>
+								<div class="review-actions">
+									<div class="review-date">
+										{{ review.createdAt | date:'dd/MM/yyyy HH:mm' }}
+									</div>
+									<button class="report-btn" (click)="reportReview(review.reviewId)">
+										<i class="fa fa-flag"></i>
+										Báo cáo
+									</button>
+								</div>
+							</div>
+
+							<!-- Nội dung đánh giá -->
+							<div class="review-content mt-3">
+								<p class="review-text">{{ review.comment }}</p>
+
+								<!-- Hình ảnh đánh giá -->
+								<div class="review-images mt-3" *ngIf="review.images?.length">
+									<div class="image-grid">
+										<div class="review-image" *ngFor="let image of review.images">
+											<img [src]="image.imageUrl" alt="Review image" class="img-fluid">
+										</div>
+									</div>
+								</div>
+
+								<!-- Phản hồi -->
+								<div class="review-reply" *ngIf="review.reply && review.reply !== null">
+									<div class="reply-header">
+										<div class="reply-user-info">
+											<img [src]="review.reply.user.avatar" [alt]="review.reply.user.username"
+												class="reply-avatar">
+											<div>
+												<h5 class="reply-username">{{ review.reply.user.username }}</h5>
+												<span class="reply-date">{{ review.reply.createdAt | date:'dd/MM/yyyy
+													HH:mm' }}</span>
+											</div>
+										</div>
+									</div>
+									<div class="reply-content">
+										<i class="fa fa-reply reply-icon"></i>
+										<div class="reply-message">{{ review.reply.replyMessage }}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Pagination -->
+						<div class="pagination" *ngIf="reviews.length > 0">
+							<button class="pagination-btn" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+								<i class="fa fa-chevron-left"></i>
+							</button>
+							
+							<div class="page-numbers">
+								<button *ngIf="currentPage > 3" class="pagination-btn" (click)="goToPage(1)">1</button>
+								<span *ngIf="currentPage > 4">...</span>
+								
+								<button *ngFor="let page of getPageNumbers()" 
+										class="pagination-btn" 
+										[class.active]="page === currentPage"
+										(click)="goToPage(page)">
+									{{ page }}
+								</button>
+								
+								<span *ngIf="currentPage < totalPages - 3">...</span>
+								<button *ngIf="currentPage < totalPages - 2" 
+										class="pagination-btn" 
+										(click)="goToPage(totalPages)">
+									{{ totalPages }}
+								</button>
+							</div>
+							
+							<button class="pagination-btn" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+								<i class="fa fa-chevron-right"></i>
+							</button>
+						</div>
+					</div>
+
+					<!-- No Reviews -->
+					<div class="no-reviews" *ngIf="reviews.length === 0">
+						<p>Chưa có đánh giá nào cho sản phẩm này.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Loading state -->
+<div class="loading-spinner" *ngIf="loading">
+	<div class="spinner-border text-primary" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>
+
+<!-- Error state -->
+<div class="alert alert-danger" *ngIf="error">
+	{{ error }}
+</div>
+
+<!-- Report Modal -->
+<div class="modal-overlay" *ngIf="showReportModal">
+	<div class="modal-container">
+		<div class="modal-header">
+			<h3>Báo cáo bình luận</h3>
+			<button class="close-btn" (click)="closeReportModal()">
+				<i class="fa fa-times"></i>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="report-reasons">
+				<div class="reason-option" *ngFor="let reason of reportReasons">
+					<input type="radio" 
+						   [id]="reason.value" 
+						   name="reportReason" 
+						   [value]="reason.value"
+						   [(ngModel)]="selectedReportReason"
+						   (change)="onReasonChange(reason.value)">
+					<label [for]="reason.value">{{ reason.label }}</label>
+				</div>
+			</div>
+			
+			<div class="custom-reason" *ngIf="selectedReportReason === 'OTHER'">
+				<textarea 
+					placeholder="Nhập lý do của bạn (tối đa 300 ký tự)"
+					[ngModel]="customReportReason"
+					maxlength="300"
+					rows="4">
+				</textarea>
+				<div class="character-count">
+					{{ customReportReason.length || 0 }}/300
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="cancel-btn" (click)="closeReportModal()">Hủy</button>
+			<button class="submit-btn" 
+					[disabled]="!isValidReport()"
+					(click)="submitReport()">
+				Gửi báo cáo
+			</button>
+		</div>
+	</div>
+</div>

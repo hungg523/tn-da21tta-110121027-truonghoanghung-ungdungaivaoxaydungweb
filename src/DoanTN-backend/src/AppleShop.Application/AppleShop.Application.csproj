@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\AppleShop.Domain\AppleShop.Domain.csproj" />
+        <ProjectReference Include="..\AppleShop.Infrastructure\AppleShop.Infrastructure.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Handlers\ChatManagement\" />
+      <Folder Include="Handlers\StatisticalManagement\" />
+      <Folder Include="Requests\DTOs\ChatManagement\" />
+      <Folder Include="Requests\DTOs\StatisticalManagement\" />
+      <Folder Include="Requests\ChatManagement\" />
+      <Folder Include="Requests\StatisticalManagement\" />
+    </ItemGroup>
+</Project>

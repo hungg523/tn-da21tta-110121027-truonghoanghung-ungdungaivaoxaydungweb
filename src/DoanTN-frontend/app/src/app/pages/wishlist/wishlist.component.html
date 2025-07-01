@@ -1,0 +1,72 @@
+<app-page-banner 
+  [breadcrumbs]="[
+    {label: 'Danh sách yêu thích', link: '/wishlist'}
+  ]">
+</app-page-banner>
+
+<div class="wishlist-container">
+	<div class="wishlist-header">
+		<h1>Danh sách yêu thích</h1>
+	</div>
+
+	<div class="wishlist-content" *ngIf="!isLoading">
+		<div class="empty-wishlist" *ngIf="wishlistItems.length === 0">
+			<i class="fa fa-heart"></i>
+			<p>Danh sách yêu thích của bạn đang trống</p>
+			<a routerLink="/shop" class="continue-shopping">Tiếp tục mua sắm</a>
+		</div>
+
+		<div class="wishlist-items" *ngIf="wishlistItems.length > 0">
+			<div class="wishlist-item" *ngFor="let item of wishlistItems">
+				<div class="item-image">
+					<img [src]="item.image" [alt]="item.name">
+				</div>
+				<div class="item-details">
+					<h3 class="item-name">
+						<a [routerLink]="['/product-detail', item.variantId]">{{ item.name }}</a>
+					</h3>
+					<div class="item-price">
+						<span class="current-price">{{ formatPrice(item.unitPrice) }}</span>
+						<span class="original-price" *ngIf="item.originalPrice">{{ formatPrice(item.originalPrice) }}</span>
+					</div>
+					<div class="item-attributes" *ngIf="item.productAttributes">
+						<span class="attribute" *ngFor="let attr of item.productAttributes">{{ attr }}</span>
+					</div>
+				</div>
+				<div class="item-actions">
+					<button class="remove-btn" (click)="removeFromWishlist(item.variantId)">
+						<i class="fa fa-trash"></i>
+						<span>Xóa</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="loading-spinner" *ngIf="isLoading">
+		<i class="fa fa-spinner fa-spin"></i>
+	</div>
+</div>
+
+<section class="newsletter pt-100">
+	<div class="container">
+		<div class="newsletter-inner text-center ptb-100">
+			<h2 class="newsletter-title">Sign up for Newsletter</h2>
+			<p class="newsletter-sub">Wants to get latest updates! sign up for Free</p>
+			<form (ngSubmit)="onSubscribe()" #subscribeForm="ngForm">
+				<div class="form-group">
+					<input type="email" [(ngModel)]="email" name="email" class="form-control"
+						placeholder="Your email address" required #emailInput="ngModel">
+					<div *ngIf="emailInput.invalid && emailInput.touched" class="alert alert-danger">
+						Please enter a valid email address
+					</div>
+				</div>
+				<button type="submit" class="form-btn text-uppercase" [disabled]="!subscribeForm.valid">
+					<span class="sub-r">Subscribe</span>
+					<i class="fa fa-send icon-r"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+</section>
+

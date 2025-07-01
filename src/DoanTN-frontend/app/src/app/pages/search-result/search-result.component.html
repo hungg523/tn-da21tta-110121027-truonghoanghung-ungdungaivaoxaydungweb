@@ -1,0 +1,54 @@
+<div class="search-result-page">
+  <h2>Kết quả tìm kiếm cho: "{{ searchQuery }}" <span *ngIf="products.length">- {{ totalProducts }} sản phẩm được tìm thấy</span></h2>
+  <div *ngIf="isLoading" class="loading">Đang tải...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!isLoading && !error && products.length === 0" class="no-result">
+    Không tìm thấy sản phẩm nào.
+  </div>
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of displayedProducts"
+      (click)="navigateToDetail(product.variantId.toString())">
+      <div class="product-img-wrap">
+        <img class="product-img" [src]="getProductImage(product)" [alt]="product.name" (error)="handleImageError($event)">
+        <button class="wishlist-btn" (click)="addToWishlist($event, product)"
+          [class.active]="product.isInWishlist">
+          <i class="fa fa-heart"></i>
+        </button>
+        <div class="discount-badge"
+          *ngIf="product.discountPrice && product.discountPrice < product.price">
+          -{{ calculateDiscountPercentage(product.price, product.discountPrice) }}%
+        </div>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <div class="product-price">
+          <ng-container *ngIf="product.discountPrice && product.discountPrice < product.price">
+            <span class="current-price">{{ product.discountPrice | number:'1.0-0' }}đ</span>
+            <span class="discount-price old-price">{{ product.price | number:'1.0-0' }}đ</span>
+          </ng-container>
+          <ng-container *ngIf="!product.discountPrice || product.discountPrice >= product.price">
+            <span class="current-price">{{ product.price | number:'1.0-0' }}đ</span>
+          </ng-container>
+        </div>
+        <div class="product-meta">
+          <span class="sold-quantity">Đã bán: {{ product.soldQuantity }}</span>
+          <div class="rating" *ngIf="product.totalReviews > 0">
+            <div class="stars">
+              <i class="fa fa-star" *ngFor="let i of [1,2,3,4,5]"
+                [class.filled]="i <= product.averageRating"
+                [class.half]="i - 0.5 <= product.averageRating && i > product.averageRating">
+              </i>
+            </div>
+            <span class="review-count">({{ product.totalReviews }})</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-4" *ngIf="products.length > 0 && hasMoreProducts">
+    <button class="load-more-btn" (click)="loadMoreProducts()" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Xem thêm ({{ getRemainingProductsCount() }} sản phẩm)</span>
+      <span *ngIf="isLoading">Đang tải...</span>
+    </button>
+  </div>
+</div> 

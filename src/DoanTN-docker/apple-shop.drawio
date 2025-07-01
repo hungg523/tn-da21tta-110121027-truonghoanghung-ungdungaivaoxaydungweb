@@ -1,0 +1,522 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0" version="27.1.3">
+  <diagram name="Page-1" id="C4US6KnDRkGGYpaD07sO">
+    <mxGraphModel dx="1074" dy="675" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aXIF-VD2bJs9zPCcefXQ-4" value="" style="group;rotation=-90;" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="2003" y="-583" width="2132.5" height="5104" as="geometry" />
+        </mxCell>
+        <mxCell id="category_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;category&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; category_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; cat_pid (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;name (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;description (NVARCHAR(512))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;createddate (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;isactived (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-508" y="2795" width="277" height="257" as="geometry" />
+        </mxCell>
+        <mxCell id="product_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;product&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; product_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;name (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;description (NVARCHAR(4000))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;createddate (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; category_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;isactived (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-1119" y="2461" width="276" height="231" as="geometry" />
+        </mxCell>
+        <mxCell id="product_variant_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;product_variant&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; product_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;price (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;stock (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;reserved_stock (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;sold_quantity (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;isactived (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-172" y="1707" width="227" height="279" as="geometry" />
+        </mxCell>
+        <mxCell id="product_detail_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;product_detail&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; detail_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; product_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;key (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;value (NVARCHAR(1000))&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-1105" y="2836" width="247" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="product_image_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight: bold; background-color: rgb(218, 232, 252); padding: 4px; border: 1px solid black; text-align: center;&quot; colspan=&quot;2&quot;&gt;product_image&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; product_image_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;title (NVARCHAR(128))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;position (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;image_url (VARCHAR(512))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt;&amp;nbsp;variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-773" y="2151" width="254" height="233" as="geometry" />
+        </mxCell>
+        <mxCell id="attribute_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;attribute&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; attribute_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;name (NVARCHAR(64))&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-429" y="1534" width="206" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="attribute_value_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;attribute_value&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; av_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; attribute_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;value (NVARCHAR(64))&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-146" y="1518" width="210" height="136" as="geometry" />
+        </mxCell>
+        <mxCell id="product_attribute_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;product_attribute&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK,&lt;/b&gt; &lt;i&gt;FK&lt;/i&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK,&lt;/b&gt; &lt;i&gt;FK&lt;/i&gt; av_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="153" y="1536" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="promotion_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;promotion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; promotion_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;name (NVARCHAR(128))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;description (NVARCHAR(1000))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;discount_percentage (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;discount_amount (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;start_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;end_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_active (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_flashsale (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-1486" y="2715" width="300" height="334" as="geometry" />
+        </mxCell>
+        <mxCell id="product_promotion_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight: bold; background-color: rgb(218, 232, 252); padding: 4px; border: 1px solid black; text-align: center;&quot; colspan=&quot;2&quot;&gt;product_promotion&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; pm_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt;&amp;nbsp;variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt;&amp;nbsp;promotion_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding: 4px; border: 1px solid black; text-align: left;&quot;&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-1463" y="2452" width="254" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="product_view_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#dae8fc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;product_view&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; pv_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; product_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; category_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;view (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;updated_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="36" y="2549" width="253" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="order_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#c3d9ff;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;order&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; order_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;order_code (VARCHAR(32))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;total_amount (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;ship_fee (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;order_status (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;payment_method (NVARCHAR(64))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;updated_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; coupon_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; ship_coupon_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; useraddress_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="2198" y="1976" width="337" height="418" as="geometry" />
+        </mxCell>
+        <mxCell id="order_item_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#c3d9ff;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;order_item&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; oi_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; order_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;quantity (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;original_price (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;final_price (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;total_price (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;item_status (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_review (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="1170" y="1699" width="282" height="332" as="geometry" />
+        </mxCell>
+        <mxCell id="payment_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#c3d9ff;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;payment&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; payment_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; order_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;payment_method (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;amount (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;status (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;transaction_code (VARCHAR(100))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;updated_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="2708" y="1740" width="321" height="309" as="geometry" />
+        </mxCell>
+        <mxCell id="transaction_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#c3d9ff;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;transaction&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; transaction_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; order_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;payment_gateway (NVARCHAR(50))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;transaction_code (VARCHAR(100))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;amount (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;status (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;updated_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="2208" y="1486" width="317" height="312" as="geometry" />
+        </mxCell>
+        <mxCell id="return_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#c3d9ff;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;return&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; return_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; oi_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;reason (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;quantity (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;refund_amount (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;status (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;processed_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;account_name (NVARCHAR(100))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;account_number (VARCHAR(50))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;bank_name (NVARCHAR(100))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;phone_number (NVARCHAR(20))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;return_type (NVARCHAR(20))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;url (VARCHAR(128))&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="1144" y="2147" width="334" height="516" as="geometry" />
+        </mxCell>
+        <mxCell id="cart_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#d5e8d4;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;cart&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; cart_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;updated_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-980" y="1759" width="234" height="177" as="geometry" />
+        </mxCell>
+        <mxCell id="cart_item_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#d5e8d4;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;cart_item&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; ci_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; cart_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;quantity (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;unit_price (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;total_price (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="-597" y="1734" width="266" height="227" as="geometry" />
+        </mxCell>
+        <mxCell id="wish_list_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#d5e8d4;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;wish_list&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; wish_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;added_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_actived (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="237" y="1846" width="245" height="207" as="geometry" />
+        </mxCell>
+        <mxCell id="coupon_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#d5e8d4;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;coupon&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; coupon_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;code (VARCHAR(10))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;description (NVARCHAR(512))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;discount_percentage (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;discount_amount (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;max_discount_amount (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;min_order_value (DECIMAL(18,2))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;times_used (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;max_usage (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;max_usage_per_user (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_vip (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;user_specific (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; ct_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;start_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;end_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;terms_conditions (NVARCHAR(MAX))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_actived (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="2917" y="2148" width="357" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="coupon_type_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#d5e8d4;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;coupon_type&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; ct_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;type_name (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;description (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="3058" y="2815" width="281" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="user_coupon_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#d5e8d4;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;user_coupon&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; uc_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; coupon_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_used (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;times_used (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;claimed_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="2782" y="2816" width="223" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="user_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#ffe6cc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;user&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;username (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;email (VARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;password (VARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;gender (NVARCHAR(32))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;date_of_birth (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;image_url (VARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;role (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;otp (VARCHAR(6))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;otp_attempt (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;otp_expiration (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;createddate (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;last_login (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;isactived (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="1216" y="3147" width="303" height="471" as="geometry" />
+        </mxCell>
+        <mxCell id="useraddress_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#ffe6cc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;useraddress&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; useraddress_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;firstname (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;lastname (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;addressline (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;phonenumber (VARCHAR(50))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;province (NVARCHAR(100))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;district (NVARCHAR(100))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;ward (NVARCHAR(100))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;default (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="2308" y="3132" width="284" height="345" as="geometry" />
+        </mxCell>
+        <mxCell id="usertoken_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#e1d5e7;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;usertoken&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; usertoken_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;refreshtoken (VARCHAR(1000))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;issued_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;expiration (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;revoked_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;isactived (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="828" y="3250" width="288" height="265" as="geometry" />
+        </mxCell>
+        <mxCell id="review_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#fff2cc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;review&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; review_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; oi_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;rating (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;comment (NVARCHAR(500))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_flagged (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_deleted (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="478" y="2258" width="270" height="327" as="geometry" />
+        </mxCell>
+        <mxCell id="review_media_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#fff2cc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;review_media&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; media_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; review_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;media_url (VARCHAR(128))&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="845" y="2467" width="265" height="141" as="geometry" />
+        </mxCell>
+        <mxCell id="review_reply_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#fff2cc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;review_reply&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; reply_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; review_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;reply_text (NVARCHAR(500))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="847" y="2656" width="265" height="196" as="geometry" />
+        </mxCell>
+        <mxCell id="review_report_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#fff2cc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;review_report&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; report_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; review_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;status (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;total_reports (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="1767" y="2458" width="239" height="201" as="geometry" />
+        </mxCell>
+        <mxCell id="review_report_users_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#fff2cc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;review_report_users&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; rru_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; report_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;reason (NVARCHAR(300))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="1763" y="2713" width="247" height="201" as="geometry" />
+        </mxCell>
+        <mxCell id="user_interaction_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#f8cecc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;user_interaction&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; interaction_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; variant_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;interaction_type (VARCHAR(20))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;interaction_value (FLOAT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="553" y="1843" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="spin_history_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#f8cecc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;spin_history&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; spin_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; coupon_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;spin_date (DATE)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="3388" y="2342" width="230" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="conversations_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#f8cecc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;conversations&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; conversation_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; user_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;status (VARCHAR(64))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_bot_handled (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="2055" y="3163" width="238" height="203.5" as="geometry" />
+        </mxCell>
+        <mxCell id="chat_messages_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#f8cecc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;chat_messages&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; chat_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; conversation_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;sender_type (VARCHAR(32))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;i&gt;FK&lt;/i&gt; sender_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;message (NVARCHAR(2000))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;time_stamp (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;is_from_bot (BIT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" vertex="1">
+          <mxGeometry x="1689" y="3132" width="260" height="257.5" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_img_prod" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_detail_entity" target="product_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-548" y="2964" as="sourcePoint" />
+            <mxPoint x="-278" y="2859" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_attrval_attr" value="" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontSize=17;fontStyle=0;spacing=2;labelBorderColor=none;html=1;jumpSize=6;endSize=6;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="attribute_value_entity" target="attribute_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_prodattr_var" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.25;exitDx=0;exitDy=0;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_attribute_entity" target="product_variant_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="263" y="1691" />
+              <mxPoint x="131" y="1691" />
+              <mxPoint x="131" y="1777" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel_prodattr_attrval" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;fontSize=17;fontStyle=1;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_attribute_entity" target="attribute_value_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_prodpromo_promo" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_promotion_entity" target="promotion_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_pay_order" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.5;fontSize=17;strokeWidth=1.5;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="payment_entity" target="order_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_trans_order" style="endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=17;strokeWidth=1.5;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="transaction_entity" target="order_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_return_oi" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERone;html=1;fontSize=17;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="return_entity" target="order_item_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_ci_cart" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="cart_item_entity" target="cart_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_coupon_ct" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="coupon_entity" target="coupon_type_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_rruser_report" style="endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_report_users_entity" target="review_report_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_spin_coupon" style="endArrow=ERone;startArrow=ERmany;html=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;fontSize=17;strokeWidth=1.5;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="spin_history_entity" target="coupon_entity" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_chat_conv" style="endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="chat_messages_entity" target="conversations_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2033" y="3260" />
+              <mxPoint x="2033" y="3264" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-11" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="cart_item_entity" target="product_variant_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-373" y="1606" as="sourcePoint" />
+            <mxPoint x="-522" y="1606" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-14" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-646" y="2148" as="sourcePoint" />
+            <mxPoint x="-2" y="1985" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-646" y="2121" />
+              <mxPoint x="-2" y="2121" />
+              <mxPoint x="-2" y="1985" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-17" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.804;entryY=-0.012;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;entryPerimeter=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_promotion_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-1336" y="2448" as="sourcePoint" />
+            <mxPoint x="-128" y="1986" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-1336" y="2086" />
+              <mxPoint x="-127" y="2086" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-19" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.59;exitY=-0.022;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;exitPerimeter=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" target="product_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-79" y="1987" as="sourcePoint" />
+            <mxPoint x="-981" y="2299" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-79" y="2107" />
+              <mxPoint x="-981" y="2107" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-20" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_entity" target="category_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-646" y="2661" as="sourcePoint" />
+            <mxPoint x="-487" y="2661" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-21" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="wish_list_entity" target="product_variant_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="71" y="2166" as="sourcePoint" />
+            <mxPoint x="230" y="2166" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="146" y="1950" />
+              <mxPoint x="146" y="1846" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-22" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_view_entity" target="category_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-163" y="2845" as="sourcePoint" />
+            <mxPoint x="-4" y="2844" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-23" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_view_entity" target="product_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-41" y="2558" as="sourcePoint" />
+            <mxPoint x="-308" y="2715" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-614" y="2693" />
+              <mxPoint x="-614" y="2518" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-24" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_view_entity" target="product_variant_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="526" y="2406" as="sourcePoint" />
+            <mxPoint x="-353" y="2231" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="99" y="2466" />
+              <mxPoint x="42" y="2466" />
+              <mxPoint x="42" y="2073" />
+              <mxPoint x="-2" y="2073" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-25" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="554" y="1967" as="sourcePoint" />
+            <mxPoint x="-2" y="1985" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="515" y="1967" />
+              <mxPoint x="515" y="2105" />
+              <mxPoint x="179" y="2105" />
+              <mxPoint x="179" y="2030" />
+              <mxPoint x="-2" y="2030" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-26" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_entity" target="product_variant_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="319" y="2254" as="sourcePoint" />
+            <mxPoint x="106" y="2148" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="445" y="2339" />
+              <mxPoint x="445" y="2254" />
+              <mxPoint x="147" y="2254" />
+              <mxPoint x="147" y="1847" />
+              <mxPoint x="108" y="1847" />
+              <mxPoint x="108" y="1846" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-27" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="order_item_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="648" y="1802" as="sourcePoint" />
+            <mxPoint x="55" y="1846" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="146" y="1782" />
+              <mxPoint x="146" y="1846" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-28" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1170" y="1782" as="sourcePoint" />
+            <mxPoint x="748" y="2342" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="885" y="1782" />
+              <mxPoint x="885" y="2342" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-29" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_media_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="930" y="2426" as="sourcePoint" />
+            <mxPoint x="748" y="2322" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="978" y="2392" />
+              <mxPoint x="887" y="2392" />
+              <mxPoint x="887" y="2322" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-30" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_reply_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="808" y="2669" as="sourcePoint" />
+            <mxPoint x="748" y="2322" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="804" y="2704" />
+              <mxPoint x="804" y="2467" />
+              <mxPoint x="805" y="2467" />
+              <mxPoint x="805" y="2392" />
+              <mxPoint x="887" y="2392" />
+              <mxPoint x="887" y="2322" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-31" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERone;html=1;fontSize=17;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="user_entity" target="cart_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1254" y="3092" as="sourcePoint" />
+            <mxPoint x="-1148" y="1827" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1368" y="3093" />
+              <mxPoint x="-1159" y="3093" />
+              <mxPoint x="-1159" y="1846" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-32" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="wish_list_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="904" y="3309" as="sourcePoint" />
+            <mxPoint x="1368" y="3147" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="360" y="3093" />
+              <mxPoint x="1368" y="3093" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-33" style="endArrow=ERone;startArrow=ERmany;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="usertoken_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1139" y="3791" as="sourcePoint" />
+            <mxPoint x="909" y="3646" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-34" style="endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;rounded=1;targetPerimeterSpacing=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="product_view_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="124" y="2907" as="sourcePoint" />
+            <mxPoint x="1368" y="3147" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="163" y="3093" />
+              <mxPoint x="1369" y="3093" />
+              <mxPoint x="1369" y="3147" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-36" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=17;strokeWidth=1.5;rounded=1;curved=0;targetPerimeterSpacing=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1162" y="2998" as="sourcePoint" />
+            <mxPoint x="1368" y="3147" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="613" y="3092" />
+              <mxPoint x="1368" y="3092" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-37" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;fontSize=17;fontStyle=1;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="user_interaction_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="871" y="2196" as="sourcePoint" />
+            <mxPoint x="1368" y="3147" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="778" y="3091" />
+              <mxPoint x="1368" y="3091" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-38" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=17;fontStyle=1;strokeWidth=1.5;" parent="aXIF-VD2bJs9zPCcefXQ-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1310" y="2664" as="sourcePoint" />
+            <mxPoint x="1367" y="3147" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1310" y="3091" />
+              <mxPoint x="1368" y="3091" />
+              <mxPoint x="1368" y="3147" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-39" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;exitX=0.511;exitY=0.001;exitDx=0;exitDy=0;fontSize=17;fontStyle=1;strokeWidth=1.5;exitPerimeter=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_reply_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1270" y="2970" as="sourcePoint" />
+            <mxPoint x="1368" y="3147" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="977" y="3092" />
+              <mxPoint x="1369" y="3092" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-40" style="endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;entryX=1;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="chat_messages_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1631" y="3230" as="sourcePoint" />
+            <mxPoint x="1631" y="3328" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-42" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERone;html=1;fontSize=17;strokeWidth=1.5;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="conversations_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1613" y="3589" as="sourcePoint" />
+            <mxPoint x="1613" y="3473" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2032" y="3264" />
+              <mxPoint x="2032" y="3482" />
+              <mxPoint x="1519" y="3482" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-45" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERone;html=1;fontSize=17;strokeWidth=1.5;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_report_entity" target="review_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1678" y="2548" as="sourcePoint" />
+            <mxPoint x="1598" y="2639" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1538" y="2558" />
+              <mxPoint x="1538" y="2955" />
+              <mxPoint x="680" y="2955" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-46" style="endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;entryX=0.75;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="review_report_users_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1630" y="3075" as="sourcePoint" />
+            <mxPoint x="1630" y="3021" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1887" y="3089" />
+              <mxPoint x="1443" y="3089" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-47" style="endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;flowAnimation=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2346" y="3131" as="sourcePoint" />
+            <mxPoint x="1443" y="3147" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2346" y="3088" />
+              <mxPoint x="1443" y="3088" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-49" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=0;entryY=0.5;fontSize=17;strokeWidth=1.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="order_item_entity" target="order_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2274" y="1888" as="sourcePoint" />
+            <mxPoint x="2101" y="2177" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2110" y="1865" />
+              <mxPoint x="2110" y="2184" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-50" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=0.75;entryY=0;fontSize=17;strokeWidth=1.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="order_entity" target="useraddress_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2494" y="2623" as="sourcePoint" />
+            <mxPoint x="2321" y="2912" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-52" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;entryX=0.75;entryY=0;fontSize=17;strokeWidth=1.5;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="order_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2266" y="2460" as="sourcePoint" />
+            <mxPoint x="2093" y="2749" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2282" y="3088" />
+              <mxPoint x="1443" y="3088" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-53" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="user_coupon_entity" target="coupon_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2756" y="2737" as="sourcePoint" />
+            <mxPoint x="2897" y="2846" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-54" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="coupon_entity" target="order_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2611" y="2496" as="sourcePoint" />
+            <mxPoint x="2624" y="2284" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-55" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="coupon_entity" target="order_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2927" y="2452" as="sourcePoint" />
+            <mxPoint x="2545" y="2194" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-56" style="endArrow=ERone;startArrow=ERmany;html=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;fontSize=17;strokeWidth=1.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;exitDx=0;exitDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="spin_history_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2159" y="3004" as="sourcePoint" />
+            <mxPoint x="2045" y="3004" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3503" y="3089" />
+              <mxPoint x="1443" y="3089" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="g0KlWTCODhBqR9Ya8_0p-57" style="edgeStyle=orthogonalEdgeStyle;endArrow=ERone;startArrow=ERmany;html=1;fontSize=17;strokeWidth=1.5;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="aXIF-VD2bJs9zPCcefXQ-4" source="user_coupon_entity" target="user_entity" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2015" y="3042" as="sourcePoint" />
+            <mxPoint x="2127" y="2964" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2709" y="2932" />
+              <mxPoint x="2709" y="3004" />
+              <mxPoint x="1443" y="3004" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aXIF-VD2bJs9zPCcefXQ-5" value="" style="group;rotation=-90;" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="3512" y="193" width="327" height="613.5" as="geometry" />
+        </mxCell>
+        <mxCell id="banner_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#f8cecc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;banner&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; banner_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;title (NVARCHAR(255))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;description (NVARCHAR(1000))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;image_url (VARCHAR(128))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;link (NVARCHAR(500))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;start_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;end_date (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;status (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;position (INT)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-5" vertex="1">
+          <mxGeometry x="-143" y="143" width="293" height="327" as="geometry" />
+        </mxCell>
+        <mxCell id="ai_prompt_entity" value="&lt;table style=&quot;width:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-weight:bold;background-color:#f8cecc;padding:4px;border:1px solid black;text-align:center;&quot; colspan=&quot;2&quot;&gt;ai_prompt&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;&lt;b&gt;PK&lt;/b&gt; prompt_id (INT)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;name (NVARCHAR(128))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;content (NVARCHAR(1000))&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;padding:4px;border:1px solid black;text-align:left;&quot;&gt;created_at (DATETIME)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="shape=table;startSize=0;container=1;collapsible=0;childLayout=tableLayout;html=1;align=center;fontStyle=0;resizeLast=1;flipH=1;flipV=1;fontSize=17;strokeWidth=1.5;rotation=0;" parent="aXIF-VD2bJs9zPCcefXQ-5" vertex="1">
+          <mxGeometry x="216" y="144" width="254" height="181" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

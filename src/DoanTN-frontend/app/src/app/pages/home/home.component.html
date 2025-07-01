@@ -1,0 +1,197 @@
+<!-- Hero Banner Section -->
+<section class="hero-banner" #parallaxSection>
+	<div class="banner-slider">
+		<div class="banner-slide" *ngFor="let banner of banners; let i = index"
+			 [style.background-image]="'url(' + (banner.imageUrl || banner.url) + ')'"
+			 [class.active]="i === currentBannerIndex">
+			<div class="hero-content">
+				<h1 class="animate-text">{{banner.title}}</h1>
+				<p class="animate-text">{{banner.description}}</p>
+				<a *ngIf="banner.link"
+				   [href]="banner.link"
+				   target="_blank"
+				   rel="noopener"
+				   class="cta-button animate-text">{{banner.buttonText || 'Mua Sắm Ngay'}}</a>
+			</div>
+		</div>
+	</div>
+	<div class="banner-dots">
+		<span *ngFor="let banner of banners; let i = index" 
+			  [class.active]="i === currentBannerIndex"
+			  (click)="goToBanner(i)">
+		</span>
+	</div>
+</section>
+
+<!-- Flash Sale Section -->
+<section class="flash-sale-section">
+	<div class="container">
+		<div class="section-header">
+			<h2>Flash Sale</h2>
+			<div class="countdown-timer">
+				<span class="time-block" *ngIf="flashSaleCountdown !== 'Đã kết thúc'">{{ flashSaleCountdown }}</span>
+				<span *ngIf="flashSaleCountdown === 'Đã kết thúc'">Đã kết thúc</span>
+			</div>
+		</div>
+		<div class="flash-sale-container">
+			<button class="slider-nav prev" (click)="slideFlashSale('prev')">
+				<i class="fa fa-chevron-left"></i>
+			</button>
+			<div class="flash-sale-slider" #flashSaleSlider>
+				<div class="product-card" *ngFor="let product of flashSaleProducts" (click)="navigateToDetail(product.variantId)">
+					<div class="product-image">
+						<img [src]="product.images[0]?.url" [alt]="product.name">
+						<div class="discount-badge" *ngIf="product.discountPrice">
+							-{{((product.price - product.discountPrice) / product.price * 100).toFixed(0)}}%
+						</div>
+					</div>
+					<div class="product-info">
+						<h3 class="product-name">{{product.name}}</h3>
+						<div class="price">
+							<span class="current-price">{{product.discountPrice || product.price | vndCurrency}}</span>
+							<span class="original-price" *ngIf="product.discountPrice">{{product.price | vndCurrency}}</span>
+						</div>
+						<div class="flash-meta">
+							<span class="sold">Đã bán: {{product.soldQuantity}}</span>
+							<span class="stock">Còn lại: {{product.actualStock}}</span>
+						</div>
+						<div class="flash-rating">
+							<span class="stars">
+								<i class="fa fa-star" *ngFor="let i of [1,2,3,4,5]"
+									[class.filled]="i <= product.averageRating"
+									[class.half]="i - 0.5 <= product.averageRating && i > product.averageRating">
+								</i>
+							</span>
+							<span class="review-count">({{product.totalReviews}})</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="slider-nav next" (click)="slideFlashSale('next')">
+				<i class="fa fa-chevron-right"></i>
+			</button>
+			<div class="flash-sale-dots">
+				<span class="flash-sale-dot" *ngFor="let dot of getFlashSaleDots(); let i = index" [class.active]="i === flashSaleCurrentPage"></span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- 3D Model Showcase -->
+<section class="model-showcase">
+	<div class="container">
+		<div class="model-content">
+			<div class="model-info">
+				<h2>Sức Mạnh Công Nghệ Trong Tầm Tay</h2>
+				<p>Khám phá đa dạng sản phẩm và giải pháp đột phá, định hình tương lai của bạn</p>
+				<a routerLink="/shop" class="cta-button" style="z-index:10;position:relative;">Tìm Hiểu Thêm</a>
+				<!-- <div class="model-switcher">
+					<button *ngFor="let file of modelFiles; let i = index" (click)="changeModel(i)" [class.active]="currentModelIndex === i">
+						Model {{i+1}}
+					</button>
+				</div> -->
+			</div>
+			<div class="model-container" #model3dContainer></div>
+		</div>
+	</div>
+</section>
+
+<!-- Recommended Products Section -->
+<section class="recommended-products" *ngIf="showRecommendedSection">
+	<div class="container">
+		<div class="section-header">
+			<h2>Có thể bạn sẽ thích</h2>
+		</div>
+		<div class="flash-sale-container">
+			<button class="slider-nav prev" (click)="slideRecommended('prev')">
+				<i class="fa fa-chevron-left"></i>
+			</button>
+			<div class="flash-sale-slider" #recommendedSlider>
+				<div class="product-card" *ngFor="let product of recommendedProducts" (click)="navigateToDetail(product.variant_id)">
+					<div class="product-image">
+						<img [src]="product.images[0]?.url" [alt]="product.product_name">
+						<div class="discount-badge" *ngIf="product.discount_price && product.discount_price < product.price">
+							-{{((product.price - product.discount_price) / product.price * 100).toFixed(0)}}%
+						</div>
+					</div>
+					<div class="product-info">
+						<h3 class="product-name">{{product.product_name}}</h3>
+						<div class="price">
+							<span class="current-price">{{product.discount_price || product.price | vndCurrency}}</span>
+							<span class="original-price" *ngIf="product.discount_price && product.discount_price < product.price">{{product.price | vndCurrency}}</span>
+						</div>
+						<div class="flash-meta">
+							<span class="sold">Đã bán: {{product.sold_quantity}}</span>
+							<span class="stock">Còn lại: {{product.actual_stock}}</span>
+						</div>
+						<div class="flash-rating">
+							<span class="stars">
+								<i class="fa fa-star" *ngFor="let i of [1,2,3,4,5]"
+									[class.filled]="i <= product.average_rating"
+									[class.half]="i - 0.5 <= product.average_rating && i > product.average_rating">
+								</i>
+							</span>
+							<span class="review-count">({{product.total_reviews}})</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="slider-nav next" (click)="slideRecommended('next')">
+				<i class="fa fa-chevron-right"></i>
+			</button>
+			<div class="flash-sale-dots">
+				<span class="flash-sale-dot" *ngFor="let dot of getRecommendedDots(); let i = index" [class.active]="i === recommendedCurrentPage"></span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Parallax Features Section -->
+<section class="features-section">
+	<div class="parallax-bg"></div>
+	<div class="container">
+		<div class="features-grid">
+			<div class="feature-card">
+				<i class="fas fa-truck"></i>
+				<h3>Miễn Phí Vận Chuyển</h3>
+				<p>Cho đơn hàng từ 2 triệu đồng</p>
+			</div>
+			<div class="feature-card">
+				<i class="fas fa-shield-alt"></i>
+				<h3>Bảo Hành Chính Hãng</h3>
+				<p>12 tháng toàn quốc</p>
+			</div>
+			<div class="feature-card">
+				<i class="fas fa-headset"></i>
+				<h3>Hỗ Trợ 24/7</h3>
+				<p>Luôn sẵn sàng phục vụ</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="newsletter pt-100">
+	<div class="container">
+		<div class="newsletter-inner text-center ptb-100">
+			<h2 class="newsletter-title">Sign up for Newsletter</h2>
+			<p class="newsletter-sub">Wants to get latest updates! sign up for Free</p>
+			<form>
+				<div class="form-group">
+					<input type="email" class="form-control" placeholder="Your email address" required>
+				</div>
+				<button type="submit" class="form-btn text-uppercase">
+					<span class="sub-r">Subscribe</span>
+					<i class="fa fa-send icon-r"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+<div class="top-scrolling">
+	<a href="#main" class="scrollTo"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+</div>
+
+<app-chat-box></app-chat-box>
+<!-- Lucky Wheel -->
+<app-lucky-wheel></app-lucky-wheel>

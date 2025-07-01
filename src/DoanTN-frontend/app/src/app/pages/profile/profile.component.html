@@ -1,0 +1,159 @@
+<app-page-banner [breadcrumbs]="[
+{label: 'Thông tin cá nhân', link: '/profile'}
+]"></app-page-banner>
+
+<div class="profile-container">
+    <div class="profile-content">
+        <!-- Loading spinner -->
+        <div *ngIf="isLoading" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Đang tải thông tin...</p>
+        </div>
+
+        <!-- Error message -->
+        <div *ngIf="error" class="error-message">
+            <p>{{ error }}</p>
+        </div>
+
+        <!-- Profile information -->
+        <div *ngIf="userProfile && !isLoading" class="profile-info">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <img [src]="previewImage || userProfile.avatar || 'assets/images/default-avatar.png'" 
+                         alt="Avatar"
+                         class="profile-avatar">
+                    <div *ngIf="isEditing" class="avatar-upload">
+                        <label for="avatar-input" class="upload-label">
+                            <i class="fa fa-camera"></i>
+                        </label>
+                        <input type="file" 
+                               id="avatar-input" 
+                               (change)="onFileSelected($event)"
+                               accept="image/*"
+                               class="file-input">
+                    </div>
+                </div>
+                <h2 class="profile-name">{{ userProfile.username }}</h2>
+            </div>
+
+            <!-- View Mode -->
+            <div *ngIf="!isEditing" class="info-grid">
+                <div class="info-item">
+                    <label>Email</label>
+                    <p>{{ userProfile.email }}</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Giới tính</label>
+                    <p>{{ userProfile.gender || 'Chưa cập nhật' }}</p>
+                </div>
+
+                <div class="info-item">
+                    <label>Ngày sinh</label>
+                    <p>{{ userProfile.dateOfBirth ? (userProfile.dateOfBirth | date:'dd/MM/yyyy') : 'Chưa cập nhật' }}</p>
+                </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <form *ngIf="isEditing" [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="edit-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="userName">Tên người dùng</label>
+                        <input type="text" 
+                               id="userName" 
+                               formControlName="userName" 
+                               class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Giới tính</label>
+                        <select id="gender" 
+                                formControlName="gender" 
+                                class="form-input">
+                            <option value="">Chọn giới tính</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfBirth">Ngày sinh</label>
+                        <input type="date" 
+                               id="dateOfBirth" 
+                               formControlName="dateOfBirth" 
+                               class="form-input">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" 
+                            class="btn btn-secondary" 
+                            (click)="toggleEdit()">
+                        Hủy
+                    </button>
+                    <button type="submit" 
+                            class="btn btn-primary" 
+                            [disabled]="!updateForm.valid">
+                        Lưu thay đổi
+                    </button>
+                </div>
+            </form>
+
+            <!-- Edit Button -->
+            <div *ngIf="!isEditing" class="edit-button-container">
+                <button class="btn btn-primary" (click)="toggleEdit()">
+                    Cập nhật thông tin
+                </button>
+            </div>
+
+            <!-- Address Section -->
+            <div class="address-section">
+                <h3 class="section-title">Địa chỉ nhận hàng</h3>
+                <div class="address-list">
+                    <div *ngFor="let address of userAddresses" class="address-item">
+                        <div class="address-info">
+                            <div class="address-header">
+                                <h4>{{ address.fullName }}</h4>
+                                <span class="phone-number">{{ address.phoneNumber }}</span>
+                            </div>
+                            <p class="address-text">{{ address.address }}</p>
+                        </div>
+                        <div class="address-actions">
+                            <button class="btn btn-outline" title="Chỉnh sửa" (click)="editAddress(address)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-outline btn-danger" title="Xóa" (click)="deleteAddress(address.addressId)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="add-address-button">
+                        <button class="btn btn-primary" (click)="toggleAddressForm()">
+                            <i class="fa fa-plus"></i>
+                            Thêm địa chỉ mới
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-address-form 
+    *ngIf="showAddressForm" 
+    [addressId]="selectedAddress?.addressId"
+    [editData]="{
+        firstName: selectedAddress?.fullName?.split(' ')[0] || '',
+        lastName: selectedAddress?.fullName?.split(' ').slice(1).join(' ') || '',
+        phoneNumber: selectedAddress?.phoneNumber || '',
+        addressLine: selectedAddress?.address || '',
+        province: selectedAddress?.address?.split(',')[3]?.trim() || '',
+        district: selectedAddress?.address?.split(',')[2]?.trim() || '',
+        ward: selectedAddress?.address?.split(',')[1]?.trim() || ''
+    }"
+    (close)="toggleAddressForm()" 
+    (addressAdded)="onAddressAdded()"
+    (addressUpdated)="onAddressUpdated()">
+</app-address-form>

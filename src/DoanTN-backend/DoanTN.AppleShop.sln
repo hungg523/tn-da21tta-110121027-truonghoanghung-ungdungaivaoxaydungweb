@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{14C63FB2-342B-449B-BFFE-25F1B130B222}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleShop.Share", "src\AppleShop.Share\AppleShop.Share.csproj", "{78851EA4-9BD7-44CA-B684-2EFD4CA0D93D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E055B10-EDCA-4FED-8696-79E4836CF6D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleShop.Application", "src\AppleShop.Application\AppleShop.Application.csproj", "{1DDA24D7-E900-4EE1-8119-E1C1C225EC30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleShop.Domain", "src\AppleShop.Domain\AppleShop.Domain.csproj", "{AEE8161A-495A-4906-8E9F-0905282B2CF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleShop.Infrastructure", "src\AppleShop.Infrastructure\AppleShop.Infrastructure.csproj", "{4807B5C2-EEE6-4C0F-BC54-52796EF33629}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleShop.API", "src\AppleShop.API\AppleShop.API.csproj", "{F398E8DE-ECF8-470A-8CEF-1D9D7943F633}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7B664F6C-7A64-4CDD-AA40-E6ADC8A806D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78851EA4-9BD7-44CA-B684-2EFD4CA0D93D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78851EA4-9BD7-44CA-B684-2EFD4CA0D93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78851EA4-9BD7-44CA-B684-2EFD4CA0D93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78851EA4-9BD7-44CA-B684-2EFD4CA0D93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DDA24D7-E900-4EE1-8119-E1C1C225EC30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DDA24D7-E900-4EE1-8119-E1C1C225EC30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DDA24D7-E900-4EE1-8119-E1C1C225EC30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DDA24D7-E900-4EE1-8119-E1C1C225EC30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEE8161A-495A-4906-8E9F-0905282B2CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEE8161A-495A-4906-8E9F-0905282B2CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEE8161A-495A-4906-8E9F-0905282B2CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEE8161A-495A-4906-8E9F-0905282B2CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4807B5C2-EEE6-4C0F-BC54-52796EF33629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4807B5C2-EEE6-4C0F-BC54-52796EF33629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4807B5C2-EEE6-4C0F-BC54-52796EF33629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4807B5C2-EEE6-4C0F-BC54-52796EF33629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F398E8DE-ECF8-470A-8CEF-1D9D7943F633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F398E8DE-ECF8-470A-8CEF-1D9D7943F633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F398E8DE-ECF8-470A-8CEF-1D9D7943F633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F398E8DE-ECF8-470A-8CEF-1D9D7943F633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B664F6C-7A64-4CDD-AA40-E6ADC8A806D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B664F6C-7A64-4CDD-AA40-E6ADC8A806D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B664F6C-7A64-4CDD-AA40-E6ADC8A806D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B664F6C-7A64-4CDD-AA40-E6ADC8A806D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{78851EA4-9BD7-44CA-B684-2EFD4CA0D93D} = {14C63FB2-342B-449B-BFFE-25F1B130B222}
+		{1DDA24D7-E900-4EE1-8119-E1C1C225EC30} = {14C63FB2-342B-449B-BFFE-25F1B130B222}
+		{AEE8161A-495A-4906-8E9F-0905282B2CF2} = {14C63FB2-342B-449B-BFFE-25F1B130B222}
+		{4807B5C2-EEE6-4C0F-BC54-52796EF33629} = {14C63FB2-342B-449B-BFFE-25F1B130B222}
+		{F398E8DE-ECF8-470A-8CEF-1D9D7943F633} = {14C63FB2-342B-449B-BFFE-25F1B130B222}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {221662C8-DD8F-4690-AB53-704DA77C5D09}
+	EndGlobalSection
+EndGlobal

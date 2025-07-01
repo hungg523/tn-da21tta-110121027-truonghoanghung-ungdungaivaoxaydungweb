@@ -1,0 +1,28 @@
+name: apple-shop-frontend
+x-common-configs: &common-configs 
+  #restart: always
+  #pull_policy: always
+  networks:
+    - app-network
+
+networks:
+  app-network:
+    driver: bridge
+  external_network:
+    external: true
+
+services:
+  app:
+    image: hung52304/services:frontend
+    container_name: frontend
+    ports:
+      - "4200:80"
+      # - "4200:443"
+    <<: *common-configs
+
+  admin:
+    image: hung52304/services:frontend-admin
+    container_name: frontend-admin
+    ports:
+      - "4201:80"
+    <<: *common-configs

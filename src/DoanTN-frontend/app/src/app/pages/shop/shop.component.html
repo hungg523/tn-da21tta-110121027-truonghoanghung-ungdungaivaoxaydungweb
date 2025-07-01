@@ -1,0 +1,197 @@
+<!-- Apple-style Category Menu
+<div class="category-menu" [class.show]="showCategoryMenu">
+	<div class="container">
+		<div class="menu-header">
+			<h2>{{ selectedCategory?.name }}</h2>
+			<button class="close-menu" (click)="closeCategoryMenu()">
+				<i class="fa fa-times"></i>
+			</button>
+		</div>
+		<div class="menu-content" *ngIf="selectedCategory">
+			<div class="row">
+				<div class="col-md-3" *ngFor="let subCategory of selectedCategory.categories">
+					<div class="category-item">
+						<h3>{{ subCategory.name }}</h3>
+						<ul *ngIf="subCategory.categories && subCategory.categories.length > 0">
+							<li *ngFor="let childCategory of subCategory.categories">
+								<a href="javascript:void(0)" (click)="filterByCategory(childCategory.id.toString())">
+									{{ childCategory.name }}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<app-page-banner [breadcrumbs]="[
+    {label: 'Sản phẩm', link: '/shop'}
+  ]">
+</app-page-banner>
+
+<!-- Product List Section -->
+<section class="product-list">
+	<div class="container">
+		<div class="row pt-100 shop-page">
+			<!-- Sidebar -->
+			<div class="col-xl-3 col-lg-4 col-12">
+				<div class="sidebar">
+					<div class="filter-section">
+						<h3>Danh mục</h3>
+						<ul>
+							<li (click)="selectedCategoryId = null; onFilterChange()"
+								[class.active]="!selectedCategoryId">Tất cả</li>
+							<li *ngFor="let cat of categories" (click)="selectedCategoryId = cat.id; onFilterChange()"
+								[class.active]="selectedCategoryId === cat.id">
+								{{cat.name}} <span
+									*ngIf="productCountByCategory[cat.id]">({{productCountByCategory[cat.id]}})</span>
+							</li>
+						</ul>
+					</div>
+					<div class="filter-section">
+						<h3>Màu sắc</h3>
+						<div class="color-options">
+							<div *ngFor="let color of colorAttributes" class="color-option">
+								<input type="checkbox" [id]="'color-' + color.value" [value]="color.value"
+									(change)="onColorChange($event, color.value)">
+								<label [for]="'color-' + color.value"
+									[style.background]="getColorCode(color.value)"
+									[title]="color.value">
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="filter-section">
+						<h3>Bộ nhớ</h3>
+						<div *ngFor="let storage of storageAttributes">
+							<label>
+								<input type="checkbox" [value]="storage.value"
+									(change)="onStorageChange($event, storage.value)">
+								{{storage.value}}
+							</label>
+						</div>
+					</div>
+					<div class="filter-section">
+						<h3>Giá</h3>
+						<input type="number" placeholder="Giá thấp nhất" [(ngModel)]="minPrice"
+							(change)="onFilterChange()" min="0">
+						<input type="number" placeholder="Giá cao nhất" [(ngModel)]="maxPrice"
+							(change)="onFilterChange()" min="0">
+						<div *ngIf="minPrice && maxPrice && minPrice >= maxPrice" class="error">Giá thấp nhất phải nhỏ
+							hơn giá cao nhất</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Product Grid -->
+			<div class="col-xl-9 col-lg-8 col-12">
+				<div class="shorting mb-30">
+					<div class="row align-flax">
+						<div class="col-xl-6 col-lg-5 col-md-6 mb-r-15">
+							<div class="view">
+								<div class="list-types grid active">
+									<a href="shop.html">
+										<div class="grid-icon list-types-icon">
+											<i class="fa fa-th-large transition" aria-hidden="true"></i>
+										</div>
+									</a>
+								</div>
+								<div class="list-types list">
+								</div>
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-7 col-md-6 text-right text-left-md">
+						<div class="show-item">
+							<span class="ml-0">Sắp xếp theo:</span>
+							<div class="select-item">
+								<select class="m-w-130" [(ngModel)]="sortBy" (change)="onSortChange()">
+									<option value="default">Mặc định</option>
+									<option value="price-asc">Giá tăng dần</option>
+									<option value="price-desc">Giá giảm dần</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="product-grid" [class.list-view]="viewMode === 'list'">
+				<div class="product-item" *ngFor="let product of displayedProducts"
+					(click)="navigateToDetail(product.variantId)">
+					<div class="product-image">
+						<img [src]="getProductImage(product)" [alt]="product.name" (error)="handleImageError($event)">
+						<button class="wishlist-btn" (click)="addToWishlist($event, product)"
+							[class.active]="product.isInWishlist">
+							<i class="fa fa-heart"></i>
+						</button>
+						<div class="discount-badge"
+							*ngIf="product.discountPrice && product.discountPrice < product.price">
+							-{{ calculateDiscountPercentage(product.price, product.discountPrice) }}%
+						</div>
+					</div>
+					<div class="product-info">
+						<h3 class="product-name">{{ product.name }}</h3>
+						<div class="product-price">
+							<ng-container *ngIf="product.discountPrice && product.discountPrice < product.price">
+								<span class="current-price">{{ product.discountPrice | number:'1.0-0' }}đ</span>
+								<span class="discount-price">{{ product.price | number:'1.0-0' }}đ</span>
+							</ng-container>
+							<ng-container *ngIf="!product.discountPrice || product.discountPrice >= product.price">
+								<span class="current-price">{{ product.price | number:'1.0-0' }}đ</span>
+							</ng-container>
+						</div>
+						<div class="product-meta">
+							<span class="sold-quantity">Đã bán: {{ product.soldQuantity }}</span>
+							<div class="rating" *ngIf="product.totalReviews > 0">
+								<div class="stars">
+									<i class="fa fa-star" *ngFor="let i of [1,2,3,4,5]"
+										[class.filled]="i <= product.averageRating"
+										[class.half]="i - 0.5 <= product.averageRating && i > product.averageRating">
+									</i>
+								</div>
+								<span class="review-count">({{ product.totalReviews }})</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Load More Button -->
+			<div class="text-center mt-4" *ngIf="products.length > 0 && hasMoreProducts">
+				<button class="load-more-btn" (click)="loadMoreProducts()" [disabled]="isLoading">
+					<span *ngIf="!isLoading">Xem thêm ({{ getRemainingProductsCount() }} sản phẩm)</span>
+					<span *ngIf="isLoading">Đang tải...</span>
+				</button>
+			</div>
+
+			<!-- Error -->
+			<div *ngIf="error" class="alert alert-danger text-center">
+				{{ error }}
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+
+<section class="newsletter pt-100">
+	<div class="container">
+		<div class="newsletter-inner text-center ptb-100">
+			<h2 class="newsletter-title">Sign up for Newsletter</h2>
+			<p class="newsletter-sub">Wants to get latest updates! sign up for Free</p>
+			<form>
+				<div class="form-group">
+					<input type="email" class="form-control" placeholder="Your email address" required>
+				</div>
+				<button type="submit" class="form-btn text-uppercase">
+					<span class="sub-r">Subscribe</span>
+					<i class="fa fa-send icon-r"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+<div class="top-scrolling">
+	<a href="#main" class="scrollTo"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+</div>

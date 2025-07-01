@@ -1,0 +1,293 @@
+<app-page-banner 
+  [breadcrumbs]="[
+    {label: 'Thanh toán', link: '/checkout'}
+  ]">
+</app-page-banner>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" *ngIf="loading">
+	<div class="spinner"></div>
+</div>
+
+<!-- Error message -->
+<div class="error-message" *ngIf="error">
+	<i class="fa fa-exclamation-circle"></i>
+	{{ error }}
+</div>
+
+<section class="checkout-page">
+	<div class="container">
+		<div class="row">
+			<!-- Billing Details -->
+			<div class="col-lg-8">
+				<div class="checkout-form">
+					<h2 class="section-title">Thông tin thanh toán</h2>
+					
+					<!-- Address Selection -->
+					<div class="form-section">
+						<h3>Địa chỉ giao hàng</h3>
+						<div class="address-selection">
+							<div class="selected-address" *ngIf="selectedAddress">
+								<div class="address-details">
+									<p class="name">{{ selectedAddress.fullName }}</p>
+									<p class="phone">{{ selectedAddress.phoneNumber }}</p>
+									<p class="address">{{ selectedAddress.address }}</p>
+								</div>
+								<button class="change-address" (click)="openAddressModal()">
+									Thay đổi
+								</button>
+							</div>
+							<button class="select-address-btn" 
+									(click)="openAddressModal()"
+									*ngIf="!selectedAddress">
+								Chọn địa chỉ giao hàng
+							</button>
+						</div>
+					</div>
+
+					<!-- Address Modal -->
+					<div class="modal" *ngIf="showAddressModal" (click)="closeAddressModal()">
+						<div class="modal-content" (click)="$event.stopPropagation()">
+							<div class="modal-header">
+								<h3>Chọn địa chỉ giao hàng</h3>
+								<button class="close-modal" (click)="closeAddressModal()">×</button>
+							</div>
+							<div class="modal-body">
+								<div class="address-list">
+									<div class="address-item" 
+										 *ngFor="let address of addresses">
+										<div class="address-details">
+											<p class="name">{{ address.fullName }}</p>
+											<p class="phone">{{ address.phoneNumber }}</p>
+											<p class="address">{{ address.address }}</p>
+										</div>
+										<div class="address-actions">
+											<button class="select-btn" (click)="selectAddress(address)">
+												Chọn
+											</button>
+											<button class="edit-btn" (click)="openAddressForm(address)">
+												<i class="fa fa-edit"></i>
+											</button>
+											<button class="delete-btn" (click)="deleteAddress(address.addressId)">
+												<i class="fa fa-trash"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+								<button class="add-address-btn" (click)="openAddressForm()">
+									<i class="fa fa-plus"></i>
+									Thêm địa chỉ mới
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Address Form -->
+					<app-address-form 
+						*ngIf="showAddressForm" 
+						[addressId]="editingAddress?.addressId?.toString()"
+						[editData]="editingAddress ? {
+							firstName: editingAddress.fullName ? editingAddress.fullName.split(' ')[0] : '',
+							lastName: editingAddress.fullName ? editingAddress.fullName.split(' ').slice(1).join(' ') : '',
+							phoneNumber: editingAddress.phoneNumber || '',
+							addressLine: editingAddress.address || '',
+							province: editingAddress.address ? (editingAddress.address.split(',')[3] || '').trim() : '',
+							district: editingAddress.address ? (editingAddress.address.split(',')[2] || '').trim() : '',
+							ward: editingAddress.address ? (editingAddress.address.split(',')[1] || '').trim() : ''
+						} : undefined"
+						(close)="closeAddressForm()" 
+						(addressAdded)="onAddressAdded()"
+						(addressUpdated)="onAddressUpdated()">
+					</app-address-form>
+
+					<!-- Payment Method -->
+					<div class="form-section">
+						<h3>Phương thức thanh toán</h3>
+						<div class="payment-methods">
+							<div class="payment-method">
+								<input type="radio" 
+									   id="cod" 
+									   name="payment" 
+									   value="COD" 
+									   [(ngModel)]="paymentMethod">
+								<label for="cod">
+									<i class="fa fa-money"></i>
+									Thanh toán khi nhận hàng (COD)
+								</label>
+							</div>
+							<div class="payment-method">
+								<input type="radio" 
+									   id="payos" 
+									   name="payment" 
+									   value="PAYOS" 
+									   [(ngModel)]="paymentMethod">
+								<label for="payos">
+									<i class="fa fa-credit-card"></i>
+									Thanh toán Online
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- Coupon Code -->
+					<div class="form-section">
+						<h3>Mã giảm giá</h3>
+						
+						<!-- Mã giảm giá đơn hàng -->
+						<div class="coupon-section">
+							<h4>Mã giảm giá đơn hàng</h4>
+							<!-- Nhập mã giảm giá -->
+							<div class="coupon-input" *ngIf="!selectedOrderCoupon">
+								<input type="text" 
+									   class="form-control" 
+									   [(ngModel)]="enteredCouponCode" 
+									   name="enteredCouponCode"
+									   placeholder="Nhập mã giảm giá">
+								<button class="apply-coupon" 
+										(click)="applyCoupon()"
+										[disabled]="!enteredCouponCode">
+									Áp dụng
+								</button>
+							</div>
+							<!-- Hiển thị mã đã chọn/nhập -->
+							<div class="selected-coupon" *ngIf="selectedOrderCoupon">
+								<div class="coupon-info">
+									<span class="coupon-code">{{ selectedOrderCoupon.code }}</span>
+									<span class="coupon-type" [ngClass]="{'vip': selectedOrderCoupon.isVip}">
+										{{ selectedOrderCoupon.isVip ? 'VIP' : 'Thường' }}
+									</span>
+									<span class="discount-display">{{ selectedOrderCoupon.discountDisplay }}</span>
+								</div>
+								<button class="remove-coupon" (click)="removeOrderCoupon()">×</button>
+							</div>
+							<!-- Nút chọn mã giảm giá -->
+							<button class="select-coupon-btn" 
+									(click)="openCouponModal('order')"
+									[disabled]="enteredCouponCode">
+								{{ selectedOrderCoupon ? 'Đổi mã giảm giá' : 'Chọn mã giảm giá' }}
+							</button>
+						</div>
+
+						<!-- Mã giảm giá vận chuyển -->
+						<div class="coupon-section">
+							<h4>Mã giảm giá vận chuyển</h4>
+							<div class="selected-coupon" *ngIf="selectedShipCoupon">
+								<div class="coupon-info">
+									<span class="coupon-code">{{ selectedShipCoupon.code }}</span>
+									<span class="coupon-type" [ngClass]="{'vip': selectedShipCoupon.isVip}">
+										{{ selectedShipCoupon.isVip ? 'VIP' : 'Thường' }}
+									</span>
+									<span class="discount-display">{{ selectedShipCoupon.discountDisplay }}</span>
+								</div>
+								<button class="remove-coupon" (click)="removeShipCoupon()">×</button>
+							</div>
+							<button class="select-coupon-btn" 
+									(click)="openCouponModal('ship')">
+								{{ selectedShipCoupon ? 'Đổi mã giảm giá' : 'Chọn mã giảm giá' }}
+							</button>
+						</div>
+					</div>
+
+					<!-- Modal chọn mã giảm giá -->
+					<div class="modal" *ngIf="showCouponModal" (click)="closeCouponModal()">
+						<div class="modal-content" (click)="$event.stopPropagation()">
+							<div class="modal-header">
+								<h3>Chọn mã giảm giá {{ modalType === 'order' ? 'đơn hàng' : 'vận chuyển' }}</h3>
+								<button class="close-modal" (click)="closeCouponModal()">×</button>
+							</div>
+							<div class="modal-body">
+								<div class="coupon-list">
+									<div class="coupon-item" 
+										 *ngFor="let coupon of modalType === 'order' ? coupons.order : coupons.ship"
+										 (click)="selectCoupon(coupon)">
+										<div class="coupon-info">
+											<div class="coupon-header">
+												<span class="coupon-type" [ngClass]="{'vip': coupon.isVip}">
+													{{ coupon.isVip ? 'VIP' : 'Thường' }}
+												</span>
+											</div>
+											<div class="coupon-discount">
+												<ng-container *ngIf="coupon.discountAmount && coupon.discountAmount > 0">
+													<span class="discount-amount">-{{ formatPrice(coupon.discountAmount) }}</span>
+												</ng-container>
+												<ng-container *ngIf="coupon.discountPercentage && coupon.discountPercentage > 0">
+													<span class="discount-amount">
+														-{{ formatPrice(calculateDiscountAmount(coupon)) }}
+													</span>
+													<span class="discount-percentage">(-{{ coupon.discountPercentage }}%)</span>
+												</ng-container>
+											</div>
+										</div>
+										<div class="coupon-details">
+											<p class="coupon-conditions" *ngIf="coupon.minOrderValue">
+												<i class="fa fa-shopping-cart"></i>
+												Đơn tối thiểu: {{ formatPrice(coupon.minOrderValue) }}
+											</p>
+											<p class="coupon-conditions" *ngIf="coupon.maxDiscountAmount">
+												<i class="fa fa-tag"></i>
+												Giảm tối đa: {{ formatPrice(coupon.maxDiscountAmount) }}
+											</p>
+											<p class="coupon-usage" *ngIf="coupon.maxUsage">
+												<i class="fa fa-users"></i>
+												Đã sử dụng: {{ coupon.timesUsed || 0 }}/{{ coupon.maxUsage }}
+											</p>
+											<p class="coupon-expiry" *ngIf="coupon.availableDate">
+												<i class="fa fa-clock-o"></i>
+												HSD: {{ coupon.availableDate }}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Order Summary -->
+			<div class="col-lg-4">
+				<div class="order-summary">
+					<h2 class="section-title">Đơn hàng của bạn</h2>
+					
+					<div class="order-items">
+						<div class="order-item" *ngFor="let item of orderItems">
+							<div class="item-info">
+								<span class="item-name">{{ item.name }}</span>
+								<span class="item-quantity">x{{ item.quantity }}</span>
+							</div>
+							<div class="item-price">{{ formatPrice(item.discountPrice * item.quantity) }}</div>
+						</div>
+					</div>
+
+					<div class="order-totals">
+						<div class="total-row">
+							<span>Tạm tính</span>
+							<span>{{ formatPrice(subtotal) }}</span>
+						</div>
+						<div class="total-row">
+							<span>Phí vận chuyển</span>
+							<span>{{ formatPrice(shippingFee) }}</span>
+						</div>
+						<div class="total-row discount" *ngIf="discount > 0">
+							<span>Giảm giá</span>
+							<span>-{{ formatPrice(discount) }}</span>
+						</div>
+						<div class="total-row grand-total">
+							<span>Tổng cộng</span>
+							<span>{{ formatPrice(total) }}</span>
+						</div>
+					</div>
+
+					<button class="place-order-btn" (click)="submitOrder()" [disabled]="loading">
+						Đặt hàng
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div class="top-scrolling">
+	<a href="#main" class="scrollTo"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+</div>

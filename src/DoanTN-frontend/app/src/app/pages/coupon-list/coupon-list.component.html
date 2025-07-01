@@ -1,0 +1,145 @@
+<app-page-banner 
+  [breadcrumbs]="[
+    {label: 'Kho Voucher', link: '/user-coupon'}
+  ]">
+</app-page-banner>
+
+<div class="coupon-container">
+  <div class="coupon-header">
+    <h2>Kho Voucher Của Tôi</h2>
+    <p class="subtitle">Danh sách các voucher bạn đang sở hữu</p>
+  </div>
+
+  <!-- Loading spinner -->
+  <div class="loading-spinner" *ngIf="isLoading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Error message -->
+  <div class="error-message" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <!-- Order Coupons -->
+  <div class="coupon-section" *ngIf="coupons.order.length > 0">
+    <h3 class="section-title">
+      <i class="fa fa-tag"></i>
+      Mã giảm giá đơn hàng
+    </h3>
+    <div class="coupon-grid">
+      <div class="coupon-card order-coupon" *ngFor="let coupon of coupons.order">
+        <div class="coupon-content">
+          <div class="coupon-left">
+            <div class="discount-value">
+              <ng-container *ngIf="coupon.discountPercentage > 0">
+                <span class="amount">{{ coupon.discountPercentage }}%</span>
+              </ng-container>
+              <ng-container *ngIf="coupon.discountAmount > 0">
+                <span class="amount">{{ coupon.discountAmount | vndCurrency }}</span>
+              </ng-container>
+            </div>
+            <div class="badge">Đơn hàng</div>
+          </div>
+          <div class="coupon-right">
+            <div class="coupon-info">
+              <h4>
+                <ng-container *ngIf="coupon.discountPercentage > 0">
+                  Giảm {{ coupon.discountPercentage }}% cho đơn từ {{ coupon.minOrderValue | vndCurrency }}
+                  <ng-container *ngIf="coupon.maxDiscountAmount > 0">
+                    <br><span class="max-discount">(Tối đa {{ coupon.maxDiscountAmount | vndCurrency }})</span>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="coupon.discountAmount > 0">
+                  Giảm {{ coupon.discountAmount | vndCurrency }} cho đơn từ {{ coupon.minOrderValue | vndCurrency }}
+                </ng-container>
+              </h4>
+              <p class="description">{{ coupon.description }}</p>
+              <div class="coupon-details">
+                <span class="expiry">HSD: {{ coupon.availableDate }}</span>
+                <span class="usage">Đã dùng: {{ coupon.timesUsed }}/{{ coupon.maxUsage }}</span>
+              </div>
+              <div class="term-container">
+                <button class="term-btn" (click)="openTermModal(coupon)">
+                  <i class="fa fa-info-circle"></i>
+                  Điều kiện sử dụng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shipping Coupons -->
+  <div class="coupon-section" *ngIf="coupons.ship.length > 0">
+    <h3 class="section-title">
+      <i class="fa-solid fa-truck-fast"></i>
+      Mã giảm giá vận chuyển
+    </h3>
+    <div class="coupon-grid">
+      <div class="coupon-card shipping-coupon" *ngFor="let coupon of coupons.ship">
+        <div class="coupon-content">
+          <div class="coupon-left">
+            <div class="discount-value">
+              <ng-container *ngIf="coupon.discountPercentage > 0">
+                <span class="amount">{{ coupon.discountPercentage }}%</span>
+              </ng-container>
+              <ng-container *ngIf="coupon.discountAmount > 0">
+                <span class="amount">{{ coupon.discountAmount | vndCurrency }}</span>
+              </ng-container>
+            </div>
+            <div class="badge">Vận chuyển</div>
+          </div>
+          <div class="coupon-right">
+            <div class="coupon-info">
+              <h4>
+                <ng-container *ngIf="coupon.discountPercentage > 0">
+                  Giảm {{ coupon.discountPercentage }}% phí vận chuyển cho đơn từ {{ coupon.minOrderValue | vndCurrency }}
+                  <ng-container *ngIf="coupon.maxDiscountAmount > 0">
+                    <br><span class="max-discount">(Tối đa {{ coupon.maxDiscountAmount | vndCurrency }})</span>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="coupon.discountAmount > 0">
+                  Giảm {{ coupon.discountAmount | vndCurrency }} phí vận chuyển cho đơn từ {{ coupon.minOrderValue | vndCurrency }}
+                </ng-container>
+              </h4>
+              <p class="description">{{ coupon.description }}</p>
+              <div class="coupon-details">
+                <span class="expiry">HSD: {{ coupon.availableDate }}</span>
+                <span class="usage">Đã dùng: {{ coupon.timesUsed }}/{{ coupon.maxUsage }}</span>
+              </div>
+              <div class="term-container">
+                <button class="term-btn" (click)="openTermModal(coupon)">
+                  <i class="fa fa-info-circle"></i>
+                  Điều kiện sử dụng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No coupons message -->
+  <div class="no-coupons" *ngIf="!isLoading && coupons.order.length === 0 && coupons.ship.length === 0">
+    <i class="fa fa-ticket-alt"></i>
+    <p>Hiện tại không có mã giảm giá nào</p>
+  </div>
+</div>
+
+<!-- Term Modal -->
+<div class="modal-overlay" *ngIf="selectedCoupon" (click)="closeTermModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Điều kiện sử dụng</h3>
+      <button class="close-btn" (click)="closeTermModal()">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="term-content" [innerHTML]="selectedCoupon.term"></div>
+    </div>
+  </div>
+</div> 

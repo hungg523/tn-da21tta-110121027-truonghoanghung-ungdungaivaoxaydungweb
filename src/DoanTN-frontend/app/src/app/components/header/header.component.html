@@ -1,0 +1,150 @@
+<!-- Start preloader -->
+<div id="preloader"></div>
+<!-- End preloader -->
+
+<div class="main">
+    <header class="header">
+        <div class="header-container">
+            <div class="header-top">
+                <!-- Logo -->
+                <div class="logo">
+                    <a routerLink="/">
+                        <span class="logo-text">HưngApple</span>
+                    </a>
+                </div>
+
+                <!-- Search -->
+                <div class="search-container" [class.active]="showSearch || !isMobile">
+                    <form class="search-form" (ngSubmit)="search()">
+                        <input type="text" class="search-input" placeholder="Tìm kiếm sản phẩm..."
+                            [(ngModel)]="searchQuery" name="searchQuery" (input)="onSearchInputChange()">
+                        <button type="submit" class="search-button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                    <div class="search-dropdown" *ngIf="showSearch && validSearchResults.length > 0">
+                        <div class="search-loading" *ngIf="searchLoading">Đang tìm kiếm...</div>
+                        <div class="search-result-item" *ngFor="let product of validSearchResults" 
+                            [routerLink]="['/product-detail', product.variantId]" 
+                            (click)="showSearch = false; searchResults = []">
+                            <img [src]="(product.images && product.images[0]?.url) ? product.images[0].url : 'assets/images/no-image.png'" 
+                                alt="{{product.name}}" class="search-thumb">
+                            <div class="search-info">
+                                <div class="search-name">{{product.name}}</div>
+                                <div class="search-price">{{product.discountPrice || product.price | number:'1.0-0'}}₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Debug -->
+                <div style="display: none;">
+                    {{ searchResults | json }}
+                    {{ showSearch }}
+                </div>
+
+                <!-- Navigation Menu -->
+                <nav class="nav-menu" [class.active]="showMobileMenu">
+                    <div class="nav-item">
+                        <a routerLink="/" class="nav-link">Trang chủ</a>
+                    </div>
+                    <div class="nav-item dropdown"
+                         (mouseenter)="showCategoryMenu = true"
+                         (mouseleave)="showCategoryMenu = false">
+                        <a class="nav-link" (click)="toggleCategoryMenu($event)">
+                            Danh mục
+                        </a>
+                        <div class="dropdown-menu" [class.show]="showCategoryMenu">
+                            <div class="submenu-list">
+                                <div class="submenu-item"
+                                     *ngFor="let category of categories; let i = index"
+                                     (mouseenter)="hoveredCategoryIndex = i"
+                                     (mouseleave)="hoveredCategoryIndex = null">
+                                    <a [routerLink]="['/shop']" [queryParams]="{ categoryId: category.id }">
+                                        {{ category.name }}
+                                        <i class="fa fa-angle-right" *ngIf="category.categories?.length"></i>
+                                    </a>
+                                    <div class="sub-submenu" *ngIf="category.categories?.length && hoveredCategoryIndex === i">
+                                        <div class="submenu-item" *ngFor="let subCategory of category.categories">
+                                            <a [routerLink]="['/shop']" [queryParams]="{ categoryId: subCategory.id }">
+                                                {{ subCategory.name }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a routerLink="/shop" class="nav-link">Sản phẩm</a>
+                    </div>
+                    <div class="nav-item">
+                        <a routerLink="/voucher" class="nav-link">Voucher</a>
+                    </div>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <a routerLink="/wishlist" class="wishlist-button">
+                        <i class="fa fa-heart"></i>
+                        <span class="wishlist-count" *ngIf="wishlistItemCount > 0">{{wishlistItemCount}}</span>
+                    </a>
+
+                    <a routerLink="/cart" class="cart-button">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="cart-count" *ngIf="cartItemCount > 0">{{cartItemCount}}</span>
+                    </a>
+
+                    <!-- User Menu -->
+                    <ng-container *ngIf="isLoggedIn; else guest">
+                        <div class="user-menu">
+                            <div class="user-info-container">
+                                <button class="user-button" (click)="toggleUserMenu()">
+                                    <div class="user-avatar">
+                                        <img [src]="userProfile?.avatar || 'assets/images/default-avatar.png'" alt="User">
+                                    </div>
+                                    <span class="user-name">{{ userProfile?.username || 'Người dùng' }}</span>
+                                </button>
+                            </div>
+                            <div class="user-dropdown" [class.show]="showUserMenu">
+                                <a routerLink="/profile" class="dropdown-item">
+                                    <i class="fa fa-user"></i>
+                                    <span>Thông tin tài khoản</span>
+                                </a>
+                                <a routerLink="/order-history" class="dropdown-item">
+                                    <i class="fa fa-shopping-bag"></i>
+                                    <span>Đơn hàng của tôi</span>
+                                </a>
+                                <a routerLink="/user-voucher" class="dropdown-item">
+                                    <i class="fa-solid fa-ticket-simple"></i>
+                                    <span>Kho voucher</span>
+                                </a>
+                                <a routerLink="/change-password" class="dropdown-item">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <span>Đổi mật khẩu</span>
+                                </a>
+                                <a (click)="logout()" class="dropdown-item logout">
+                                    <i class="fa fa-sign-out-alt"></i>
+                                    <span>Đăng xuất</span>
+                                </a>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <!-- Guest Actions -->
+                    <ng-template #guest>
+                        <div class="user-actions" *ngIf="!isLoggedIn">
+                            <button class="login-btn" (click)="openLoginModal()">Đăng nhập</button>
+                            <button class="register-btn" (click)="openRegisterModal()">Đăng ký</button>
+                        </div>
+                    </ng-template>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" (click)="toggleMobileMenu()" *ngIf="isMobile">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <router-outlet></router-outlet>
+</div>
